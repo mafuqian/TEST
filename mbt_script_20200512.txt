@@ -1,7 +1,7 @@
-update gp_qc_rule set MIN_LENGTH=2,MAX_LENGTH=2 where DATA_ID = 'MBT_210__C_FIRST_HOU_LOAN_FLAG';
-update gp_qc_rule set nullable='Y',script='if ((!isEmpty(IS_RPT) && IS_RPT.substring(4,5) == "1") && (B_ACCT_CODE == "R2")) {
-    if (isEmpty($value)) {
-        return false
+update gp_qc_rule set script='if (!isEmpty(H_MONTH)) {
+    if (((B_RPT_DATE.substring(0,4).toBigDecimal()-H_MONTH.substring(0,4).toBigDecimal())*12 + (B_RPT_DATE.substring(4,6).toBigDecimal()-H_MONTH.substring(4,6).toBigDecimal())).abs()<=1) {
+        return true
     }
+    return false
 }
-return true' where data_id = 'MBT_210__H_NOTLSU_BAL';
+return true' where data_id = 'MBT_210I2100A13I2100A1302I2100A1301'
