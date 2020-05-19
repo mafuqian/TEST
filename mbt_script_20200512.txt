@@ -1,7 +1,0 @@
-update gp_qc_rule set script='if (!isEmpty(H_MONTH)) {
-    if (((B_RPT_DATE.substring(0,4).toBigDecimal()-H_MONTH.substring(0,4).toBigDecimal())*12 + (B_RPT_DATE.substring(4,6).toBigDecimal()-H_MONTH.substring(4,6).toBigDecimal())).abs()<=1) {
-        return true
-    }
-    return false
-}
-return true' where data_id = 'MBT_210I2100A13I2100A1302I2100A1301'
