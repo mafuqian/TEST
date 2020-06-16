@@ -1,1 +1,0 @@
-mvn --legacy-local-repository -X -o sonar:sonar   -Dsonar.projectKey=CRMS   -Dsonar.host.url=http://10.2.20.161:9000   -Dsonar.login=c075bd1a03234d48d9aa9066dea767501ad2d3bf
