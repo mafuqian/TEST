@@ -40,7 +40,7 @@ CREATE OR REPLACE PROCEDURE "SP_MBT_CROSS_TABLE_120"( V_RPT_DATA_TYPE IN VARCHAR
          */
         declare
           cursor table_cur is
-            select * from mbt_120 a where 1=1 and a.RPT_DATE=V_RPT_DATE AND 1=2 and not exists
+            select * from mbt_120 a where 1=1 and a.data_status != 22 and a.RPT_DATE=V_RPT_DATE AND 1=2 and not exists
             (select 1 from (
                              SELECT DISTINCT B_NAME,B_ID_TYPE,B_ID_NUM FROM (
                                select B_NAME,B_ID_TYPE,B_ID_NUM  from mbt_110 where B_RPT_DATE = V_RPT_DATE
@@ -116,7 +116,7 @@ V_BUS_VALIDATE_DESC VARCHAR2(4000);
        */
       declare
         cursor table_cur is
-          select * from mbt_130 a where 1=1 and a.RPT_DATE=V_RPT_DATE AND 1=2 and not exists
+          select * from mbt_130 a where 1=1 and a.data_status != 22 and a.RPT_DATE=V_RPT_DATE AND 1=2 and not exists
           (select 1 from (
                            SELECT DISTINCT B_NAME,B_ID_TYPE,B_ID_NUM FROM (
                              select B_NAME,B_ID_TYPE,B_ID_NUM  from mbt_110 where B_RPT_DATE = V_RPT_DATE
@@ -192,7 +192,7 @@ BEGIN
        */
       declare
         cursor table_cur is
-          select * from mbt_140 a where 1=1 and a.RPT_DATE=V_RPT_DATE AND 1=2 and not exists
+          select * from mbt_140 a where 1=1 and a.data_status != 22 and a.RPT_DATE=V_RPT_DATE AND 1=2 and not exists
           (select 1 from (
                            SELECT DISTINCT B_NAME,B_ID_TYPE,B_ID_NUM FROM (
                              select B_NAME,B_ID_TYPE,B_ID_NUM  from mbt_110 where B_RPT_DATE = V_RPT_DATE
@@ -276,7 +276,7 @@ BEGIN
        */
       declare
         cursor table_cur is
-          select * from mbt_210 a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
+          select * from mbt_210 a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
           (select 1 from (
                            SELECT DISTINCT B_NAME,B_ID_TYPE,B_ID_NUM FROM (
                              select B_NAME,B_ID_TYPE,B_ID_NUM  from mbt_110 where B_RPT_DATE = V_RPT_DATE
@@ -353,7 +353,7 @@ BEGIN
        */
       declare
         cursor table_cur is
-          select * from mbt_210 a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
+          select * from mbt_210 a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
           (select 1 from (
                            SELECT DISTINCT B_CONTRACT_CODE FROM (
                              select B_CONTRACT_CODE from mbt_220 where B_RPT_DATE = V_RPT_DATE
@@ -479,7 +479,7 @@ BEGIN
        */
       declare
         cursor table_cur is
-          select * from MBT_210_EX a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') AND A.PART_TYPE LIKE '%F%' and not exists
+          select * from MBT_210_EX a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') AND A.PART_TYPE LIKE '%F%' and not exists
           (select 1 from (
                            SELECT DISTINCT B_CONTRACT_CODE FROM (
                              select B_CONTRACT_CODE from mbt_220 where B_RPT_DATE = V_RPT_DATE
@@ -553,7 +553,7 @@ BEGIN
       --关联【210-个人借贷账户信息】，检查“账户标识码”是否匹配存在；
       declare
         cursor table_cur is
-          select * from mbt_215 a where 1=1 and a.RPT_DATE=V_RPT_DATE AND 1=2 and not exists
+          select * from mbt_215 a where 1=1 and a.data_status != 22 and a.RPT_DATE=V_RPT_DATE AND 1=2 and not exists
           (select 1 from (
                            SELECT DISTINCT B_ACCT_CODE FROM (
                              select B_ACCT_CODE  from mbt_210 where B_RPT_DATE = V_RPT_DATE
@@ -634,7 +634,7 @@ BEGIN
        */
       declare
         cursor table_cur is
-          select * from mbt_220 a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
+          select * from mbt_220 a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
           (select 1 from (
                            SELECT DISTINCT B_NAME,B_ID_TYPE,B_ID_NUM FROM (
                              select B_NAME,B_ID_TYPE,B_ID_NUM  from mbt_110 where B_RPT_DATE = V_RPT_DATE
@@ -670,7 +670,7 @@ BEGIN
        */
       declare
         cursor table_cur is
-          select * from mbt_220 a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and exists
+          select * from mbt_220 a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and exists
           (select 1 from (
                            SELECT DISTINCT B_CONTRACT_CODE FROM (
                              select B_CONTRACT_CODE from mbt_420 where B_RPT_DATE = V_RPT_DATE
@@ -746,7 +746,7 @@ BEGIN
        */
       declare
         cursor table_cur is
-          select * from MBT_220_EX a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and exists
+          select * from MBT_220_EX a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and exists
           (select 1 from (
                            SELECT DISTINCT B_CONTRACT_CODE FROM (
                              select B_CONTRACT_CODE from mbt_420 where B_RPT_DATE = V_RPT_DATE
@@ -825,7 +825,7 @@ BEGIN
        */
       declare
         cursor table_cur is
-          select * from mbt_230 a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
+          select * from mbt_230 a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
           (select 1 from (
                            SELECT DISTINCT B_NAME,B_ID_TYPE,B_ID_NUM FROM (
                              select B_NAME,B_ID_TYPE,B_ID_NUM  from mbt_110 where B_RPT_DATE = V_RPT_DATE
@@ -1023,7 +1023,7 @@ BEGIN
            */
         declare
           cursor table_cur is
-            select * from mbt_340 a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
+            select * from mbt_340 a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
             (select 1 from (
                              SELECT DISTINCT B_ENT_NAME,B_ENT_CERT,B_ENT_CERT_NUM FROM (
                                select B_ENT_NAME,B_ENT_CERT,B_ENT_CERT_NUM from mbt_310 where B_RPT_DATE = V_RPT_DATE
@@ -1094,7 +1094,7 @@ BEGIN
 
       declare
         cursor table_cur is
-          select * from mbt_350 a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
+          select * from mbt_350 a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
           (select 1 from (
                            SELECT DISTINCT B_ENT_NAME,B_ENT_CERT,B_ENT_CERT_NUM FROM (
                              select B_ENT_NAME,B_ENT_CERT,B_ENT_CERT_NUM from mbt_310 where B_RPT_DATE = V_RPT_DATE
@@ -1179,7 +1179,7 @@ BEGIN
        */
       declare
         cursor table_cur is
-          select * from mbt_410 a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
+          select * from mbt_410 a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
           (select 1 from (
                            SELECT DISTINCT B_ENT_NAME,B_ENT_CERT,B_ENT_CERT_NUM FROM (
                              select B_ENT_NAME,B_ENT_CERT,B_ENT_CERT_NUM from mbt_310 where B_RPT_DATE = V_RPT_DATE
@@ -1256,7 +1256,7 @@ BEGIN
        */
       declare
         cursor table_cur is
-          select * from mbt_410 a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
+          select * from mbt_410 a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
           (select 1 from (
                            SELECT DISTINCT B_CONTRACT_CODE FROM (
                              select B_CONTRACT_CODE from mbt_420 where B_RPT_DATE = V_RPT_DATE
@@ -1380,7 +1380,7 @@ BEGIN
        */
       declare
         cursor table_cur is
-          select * from MBT_410_EX a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') AND A.PART_TYPE LIKE '%F%' and not exists
+          select * from MBT_410_EX a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') AND A.PART_TYPE LIKE '%F%' and not exists
           (select 1 from (
                            SELECT DISTINCT B_CONTRACT_CODE FROM (
                              select B_CONTRACT_CODE from mbt_420 where B_RPT_DATE = V_RPT_DATE
@@ -1416,7 +1416,7 @@ BEGIN
        */
       declare
         cursor table_cur is
-          select * from MBT_410_EX a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') AND A.PART_TYPE LIKE '%F%'  and exists
+          select * from MBT_410_EX a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') AND A.PART_TYPE LIKE '%F%'  and exists
           (select 1 from (
                            SELECT DISTINCT B_CONTRACT_CODE FROM (
                              select B_CONTRACT_CODE from mbt_220 where B_RPT_DATE = V_RPT_DATE
@@ -1497,7 +1497,7 @@ BEGIN
        */
       declare
         cursor table_cur is
-          select * from mbt_420 a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
+          select * from mbt_420 a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
           (select 1 from (
                            SELECT DISTINCT B_ENT_NAME,B_ENT_CERT,B_ENT_CERT_NUM FROM (
                              select B_ENT_NAME,B_ENT_CERT,B_ENT_CERT_NUM from mbt_310 where B_RPT_DATE = V_RPT_DATE
@@ -1534,7 +1534,7 @@ BEGIN
        */
       declare
         cursor table_cur is
-          select * from mbt_420 a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and exists
+          select * from mbt_420 a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and exists
           (select 1 from (
                            SELECT DISTINCT B_CONTRACT_CODE FROM (
                              select B_CONTRACT_CODE from mbt_220 where B_RPT_DATE = V_RPT_DATE
@@ -1611,7 +1611,7 @@ BEGIN
        */
       declare
         cursor table_cur is
-          select * from MBT_420_EX a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') AND A.PART_TYPE LIKE '%B%'  and exists
+          select * from MBT_420_EX a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') AND A.PART_TYPE LIKE '%B%'  and exists
           (select 1 from (
                            SELECT DISTINCT B_CONTRACT_CODE FROM (
                              select B_CONTRACT_CODE from mbt_220 where B_RPT_DATE = V_RPT_DATE
@@ -1696,7 +1696,7 @@ BEGIN
        */
       declare
         cursor table_cur is
-          select * from mbt_440 a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
+          select * from mbt_440 a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
           (select 1 from (
                            SELECT DISTINCT B_ENT_NAME,B_ENT_CERT,B_ENT_CERT_NUM FROM (
                              select B_ENT_NAME,B_ENT_CERT,B_ENT_CERT_NUM from mbt_310 where B_RPT_DATE = V_RPT_DATE
@@ -1773,7 +1773,7 @@ BEGIN
        */
       declare
         cursor table_cur is
-          select * from mbt_440 a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
+          select * from mbt_440 a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
           (select 1 from (
                            SELECT DISTINCT B_CONTRACT_CODE FROM (
                              select B_CONTRACT_CODE from mbt_420 where B_RPT_DATE = V_RPT_DATE
@@ -1899,7 +1899,7 @@ CREATE OR REPLACE PROCEDURE "SP_MBT_CROSS_TABLE_442"( V_RPT_DATA_TYPE IN VARCHAR
            */
           declare
             cursor table_cur is
-              select * from MBT_440_EX a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') AND A.PART_TYPE LIKE '%F%' and not exists
+              select * from MBT_440_EX a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') AND A.PART_TYPE LIKE '%F%' and not exists
               (select 1 from (
                                SELECT DISTINCT B_CONTRACT_CODE FROM (
                                  select B_CONTRACT_CODE from mbt_420 where B_RPT_DATE = V_RPT_DATE
@@ -1935,7 +1935,7 @@ CREATE OR REPLACE PROCEDURE "SP_MBT_CROSS_TABLE_442"( V_RPT_DATA_TYPE IN VARCHAR
            */
           declare
             cursor table_cur is
-              select * from MBT_440_EX a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') AND A.PART_TYPE LIKE '%F%'  and exists
+              select * from MBT_440_EX a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') AND A.PART_TYPE LIKE '%F%'  and exists
               (select 1 from (
                                SELECT DISTINCT B_CONTRACT_CODE FROM (
                                  select B_CONTRACT_CODE from mbt_220 where B_RPT_DATE = V_RPT_DATE
@@ -2005,7 +2005,7 @@ BEGIN
        */
       declare
         cursor table_cur is
-          select * from mbt_510 a where 1=1 and a.B_RPT_DATE=V_RPT_DATE and a.B_RPT_DATE_CODE NOT IN ('88','99') AND B_INFO_ID_TYPE = '2' and not exists
+          select * from mbt_510 a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE and a.B_RPT_DATE_CODE NOT IN ('88','99') AND B_INFO_ID_TYPE = '2' and not exists
           (select 1 from (
                            SELECT DISTINCT B_ENT_NAME,B_ENT_CERT,B_ENT_CERT_NUM FROM (
                              select B_ENT_NAME,B_ENT_CERT,B_ENT_CERT_NUM  from mbt_310 where B_RPT_DATE = V_RPT_DATE
@@ -2081,7 +2081,7 @@ BEGIN
        */
       declare
         cursor table_cur is
-          select * from mbt_510 a where 1=1 and a.B_RPT_DATE=V_RPT_DATE and a.B_RPT_DATE_CODE NOT IN ('88','99') AND B_INFO_ID_TYPE = '1' and not exists
+          select * from mbt_510 a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE and a.B_RPT_DATE_CODE NOT IN ('88','99') AND B_INFO_ID_TYPE = '1' and not exists
           (select 1 from (
                            SELECT DISTINCT B_NAME,B_ID_TYPE,B_ID_NUM FROM (
                              select B_NAME,B_ID_TYPE,B_ID_NUM  from mbt_110 where B_RPT_DATE = V_RPT_DATE
@@ -2157,7 +2157,7 @@ BEGIN
        */
       declare
         cursor table_cur is
-          select * from mbt_610 a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
+          select * from mbt_610 a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
           (select 1 from (
                            SELECT DISTINCT B_ENT_NAME,B_ENT_CERT,B_ENT_CERT_NUM FROM (
                              select B_ENT_NAME,B_ENT_CERT,B_ENT_CERT_NUM from mbt_310 where B_RPT_DATE = V_RPT_DATE
@@ -2231,7 +2231,7 @@ BEGIN
      */
     declare
       cursor table_cur is
-        select * from mbt_620 a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
+        select * from mbt_620 a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
         (select 1 from (
                          SELECT DISTINCT B_ENT_NAME,B_ENT_CERT,B_ENT_CERT_NUM FROM (
                            select B_ENT_NAME,B_ENT_CERT,B_ENT_CERT_NUM from mbt_310 where B_RPT_DATE = V_RPT_DATE
@@ -2304,7 +2304,7 @@ BEGIN
      */
     declare
       cursor table_cur is
-        select * from mbt_630 a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
+        select * from mbt_630 a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
         (select 1 from (
                          SELECT DISTINCT B_ENT_NAME,B_ENT_CERT,B_ENT_CERT_NUM FROM (
                            select B_ENT_NAME,B_ENT_CERT,B_ENT_CERT_NUM from mbt_310 where B_RPT_DATE = V_RPT_DATE
@@ -2376,7 +2376,7 @@ BEGIN
      */
     declare
       cursor table_cur is
-        select * from mbt_640 a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
+        select * from mbt_640 a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
         (select 1 from (
                          SELECT DISTINCT B_ENT_NAME,B_ENT_CERT,B_ENT_CERT_NUM FROM (
                            select B_ENT_NAME,B_ENT_CERT,B_ENT_CERT_NUM from mbt_310 where B_RPT_DATE = V_RPT_DATE
@@ -2449,7 +2449,7 @@ BEGIN
      */
     declare
       cursor table_cur is
-        select * from mbt_650 a where 1=1 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
+        select * from mbt_650 a where 1=1 and a.data_status != 22 and a.B_RPT_DATE=V_RPT_DATE AND a.B_RPT_DATE_CODE NOT IN ('88','99') and not exists
         (select 1 from (
                          SELECT DISTINCT B_ENT_NAME,B_ENT_CERT,B_ENT_CERT_NUM FROM (
                            select B_ENT_NAME,B_ENT_CERT,B_ENT_CERT_NUM from mbt_310 where B_RPT_DATE = V_RPT_DATE
