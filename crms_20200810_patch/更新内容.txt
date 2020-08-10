@@ -1,0 +1,24 @@
+crms_20200810_patch 更新内容：
+
+1.war包：企业报表FTL页面文件中除以下子表信息外，主表均移除了新增的金额字段
+
+目前以下页面保留了新增的金额字段：
+	企业担保信息-相关还款责任人段
+	企业借贷信息-相关还款责任人段
+	企业借贷信息-特定交易说明段
+	
+2.校验问题 CE-109.sql
+
+3.文件导入后ORG_ID更新异常问题
+
+@尧思宇 在公司环境对所有页面进行测试，现提供全量更新脚本
+更新范围：
+GP_BM_EXPORT_FIELD
+GP_BM_ID_FIELDDATA
+
+简单备份：
+CREATE TABLE GP_BM_EXPORT_FIELD_0810 as SELECT * FROM GP_BM_EXPORT_FIELD;
+CREATE TABLE GP_BM_ID_FIELDDATA_0810 as SELECT * FROM GP_BM_ID_FIELDDATA;
+
+
+
