@@ -1,0 +1,189 @@
+CREATE 
+  OR REPLACE PROCEDURE Generate_ImAndExField_CFG_Tool ( V_TABLE_NAME IN VARCHAR2 ) IS V_PDATA_ID VARCHAR ( 32 );
+V_GUID VARCHAR ( 32 );
+V_DATA_DATE VARCHAR ( 8 );
+V_DATATYPE CHAR ( 1 );
+v_count NUMBER;
+BEGIN
+  SELECT
+    DATA_ID INTO V_PDATA_ID 
+  FROM
+    GP_BM_export_sheet 
+  WHERE
+    TABLE_NAME = V_TABLE_NAME;
+  IF
+    V_PDATA_ID IS NULL THEN
+      RETURN;
+    
+  END IF;
+--step1--删除GF4J导入字段配置表
+  DELETE 
+  FROM
+    GP_BM_USER_TAB_COLS 
+  WHERE
+    TABLE_NAME = V_TABLE_NAME;
+--更新GF4J导入字段配置表
+  INSERT INTO GP_BM_USER_TAB_COLS SELECT
+  sys_guid (),
+  table_name,
+  column_name,
+  data_type,
+  data_length,
+  data_precision,
+  data_scale,
+  nullable,
+  column_id,
+  char_length 
+  FROM
+    USER_TAB_COLS 
+  WHERE
+    TABLE_NAME = V_TABLE_NAME;
+--step1 end--setp2--删除原来的导出字段
+  DELETE 
+  FROM
+    GP_BM_EXPORT_FIELD 
+  WHERE
+    P_DATA_ID = V_PDATA_ID;
+  V_DATA_DATE := TO_CHAR( SYSDATE, 'YYYYMMDD' );
+--插入新的导出字段--初始化固定在导出前列的字段
+  INSERT INTO GP_BM_EXPORT_FIELD ( "DATA_ID", "DATA_DATE", "P_DATA_ID", "COLUMN_NAME", "COLUMN_COMMENTS", "EXPORT_FLAG", "SEQ_NO", "EXPORT_NUM", "READONLY_FLAG" )
+  VALUES
+    ( sys_guid (), V_DATA_DATE, V_PDATA_ID, 'DATA_ID', '数据ID', '01', '1', '1', 'Y' );
+  INSERT INTO GP_BM_EXPORT_FIELD ( "DATA_ID", "DATA_DATE", "P_DATA_ID", "COLUMN_NAME", "COLUMN_COMMENTS", "EXPORT_FLAG", "SEQ_NO", "EXPORT_NUM", "READONLY_FLAG" )
+  VALUES
+    ( sys_guid (), V_DATA_DATE, V_PDATA_ID, 'ORG_ID', '分行机构号', '01', '2', '2', 'Y' );
+  INSERT INTO GP_BM_EXPORT_FIELD ( "DATA_ID", "DATA_DATE", "P_DATA_ID", "COLUMN_NAME", "COLUMN_COMMENTS", "EXPORT_FLAG", "SEQ_NO", "EXPORT_NUM", "READONLY_FLAG" )
+  VALUES
+    ( sys_guid (), V_DATA_DATE, V_PDATA_ID, 'GROUP_ID', '部门编号', '01', '3', '3', 'Y' );
+/* 
+  INSERT INTO GP_BM_EXPORT_FIELD ( "DATA_ID", "DATA_DATE", "P_DATA_ID", "COLUMN_NAME", "COLUMN_COMMENTS", "EXPORT_FLAG", "SEQ_NO", "EXPORT_NUM", "READONLY_FLAG" )
+  VALUES
+    ( sys_guid (), V_DATA_DATE, V_PDATA_ID, 'DATA_STATUS', 'DATA_STATUS'， '01', '4', '4', 'Y' );
+    */
+  v_count := 3;
+--循环插入剩下的字段，过滤掉下方的部分字段
+  DECLARE
+    CURSOR CUR_1 IS SELECT
+    * 
+  FROM
+    user_col_comments 
+  WHERE
+    1 = 1 
+    AND table_name = V_TABLE_NAME 
+    AND COLUMN_NAME NOT LIKE 'RSV%' 
+    AND COLUMN_NAME NOT LIKE 'DATA_%' 
+    AND COLUMN_NAME NOT LIKE 'CHECK_%' 
+    AND COLUMN_NAME NOT LIKE 'RPT%' 
+    AND COLUMN_NAME NOT IN ( 'ORG_ID', 'GROUP_ID' ) 
+  ORDER BY
+    COLUMN_NAME;
+  BEGIN
+      FOR REC1 IN CUR_1
+      LOOP
+      v_count := v_count + 1;
+--插入GP_BM_EXPORT_FIELD表
+    INSERT INTO GP_BM_EXPORT_FIELD ( "DATA_ID", "DATA_DATE", "P_DATA_ID", "COLUMN_NAME", "COLUMN_COMMENTS", "EXPORT_FLAG", "SEQ_NO", "EXPORT_NUM", "READONLY_FLAG" )
+    VALUES
+      ( sys_guid (), V_DATA_DATE, V_PDATA_ID, REC1.COLUMN_NAME, REC1.COMMENTS, '01', v_count, v_count, 'N' );
+    
+  END LOOP;
+--更新 CORP_ID ORG_ID ,部分函数会从这里取值，参考此前org_ID被更新位72 的问题
+UPDATE GP_BM_EXPORT_FIELD 
+SET CORP_ID = 'HSBC',
+ORG_ID = 'HBCN',
+DATA_CRT_DATE = V_DATA_DATE 
+WHERE
+  P_DATA_ID = V_PDATA_ID;
+
+END;
+commit;
+--setp2 end--setp3--更新导出配置表中 sheet的结束列配置值
+UPDATE GP_BM_ID_SHEETDATA 
+SET END_COLUMN = v_count 
+WHERE
+  TABLE_NAME = V_TABLE_NAME;
+SELECT
+  GUID INTO V_GUID 
+FROM
+  GP_BM_ID_SHEETDATA 
+WHERE
+  TABLE_NAME = V_TABLE_NAME;
+--step3 end--step4--删除导入字段配置中从excel读取的列 specificField
+DELETE 
+FROM
+  GP_BM_ID_FIELDDATA 
+WHERE
+  PGUID = V_GUID 
+  AND UMW_EXPRESSION LIKE 'specificField%';
+--插入导入字段配置
+DECLARE
+  CURSOR CUR_2 IS SELECT
+  * 
+FROM
+  GP_BM_EXPORT_FIELD 
+WHERE
+  P_DATA_ID = V_PDATA_ID;
+BEGIN
+    FOR REC2 IN CUR_2
+    LOOP
+    DBMS_OUTPUT.PUT_LINE ( V_TABLE_NAME || '-' || REC2.COLUMN_NAME );
+  SELECT
+  CASE
+      
+    WHEN
+      DATA_TYPE = 'NUMBER' THEN
+        '1' ELSE '2' 
+        END CASE INTO V_DATATYPE 
+    FROM
+      user_tab_columns 
+    WHERE
+      TABLE_NAME = V_TABLE_NAME 
+      AND COLUMN_NAME = REC2.COLUMN_NAME;
+--导出只读项，导入时FILTER_FLAG = 1
+    IF
+      REC2.COLUMN_NAME IN ( 'DATA_ID', 'ORG_ID', 'GROUP_ID', 'DATA_STATUS' ) THEN
+        INSERT INTO "GP_BM_ID_FIELDDATA" ( "GUID", "PGUID", "FIELD_NAME", "FIELD_COMMENTS", "UMW_EXPRESSION", "U_DATATYPE", "UPDATE_WAY", "UNIQUEKEY_FLAG", "UPDATE_FLAG", "FILTER_FLAG" )
+      VALUES
+        (
+          sys_guid (),
+          V_GUID,
+          REC2.COLUMN_NAME,
+          REC2.COLUMN_COMMENTS,
+          'specificField(${value},' || REC2.SEQ_NO || ')',
+          V_DATATYPE,
+          '1',
+          '0',
+          '1',
+          '1' 
+        );
+      ELSE INSERT INTO "GP_BM_ID_FIELDDATA" ( "GUID", "PGUID", "FIELD_NAME", "FIELD_COMMENTS", "UMW_EXPRESSION", "U_DATATYPE", "UPDATE_WAY", "UNIQUEKEY_FLAG", "UPDATE_FLAG", "FILTER_FLAG" )
+      VALUES
+        (
+          sys_guid (),
+          V_GUID,
+          REC2.COLUMN_NAME,
+          REC2.COLUMN_COMMENTS,
+          'specificField(${value},' || REC2.SEQ_NO || ')',
+          V_DATATYPE,
+          '1',
+          '0',
+          '1',
+          '0' 
+        );
+      
+    END IF;
+    
+  END LOOP;
+--导入时作为update 的wehre 条件字段
+UPDATE GP_BM_ID_FIELDDATA 
+SET UNIQUEKEY_FLAG = '1' 
+WHERE
+  1 = 1 
+  AND FIELD_NAME = 'DATA_ID';
+COMMIT;
+--step4 end
+
+END;
+commit;
+
+END Generate_ImAndExField_CFG_Tool;
