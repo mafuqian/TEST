@@ -1,0 +1,14 @@
+update GP_QC_RULE set sql = 'select 1
+  from (select count(*) as tcnt
+          FROM MBT_130_RPT,MBT_130
+         WHERE MBT_130.DATA_ID= :DATA_ID AND MBT_130_RPT.NAME = MBT_130.NAME AND
+               MBT_130_RPT.ID_TYPE = MBT_130.ID_TYPE AND
+               MBT_130_RPT.ID_NUM = MBT_130.ID_NUM AND
+               MBT_130_RPT.INF_SURC_CODE = MBT_130.INF_SURC_CODE AND
+               MBT_130_RPT.RPT_DATE <= MBT_130.RPT_DATE)
+ where tcnt = 0' where DATA_ID='MBT_130R130120101R130120101';
+ delete from GP_QC_RULE where DATA_ID='MBT_130R130120103R130120103';
+ 
+ 
+ create index QRY_R130120101 on mbt_130_rpt(NAME,ID_TYPE,ID_NUM,INF_SURC_CODE,RPT_DATE);
+ 
