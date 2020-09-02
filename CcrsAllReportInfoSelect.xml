@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CommQry title="" navigate="" type="call" interface="true" pagesize="20" async="true" databusid="TEST" txnlogflag="true" transdataactionurl="/trans/TransDataAction.do" getterclassname="com.gingkoo.gpms.platform.dataquery.action.select.ParamSqlQueryAction">
+    <Include id="BankParam" />
+    <PageQryExp type="XLS" limit="true" encoding="GBK" url="/trans/qryExp.do" desc="函数表达式" />
+    <Fields>
+        <Field id="reportCode" desc="报表编码" status="F" edittype="text" datatype="string" size="32" primary="true" readonly="false" type="REPORT_CODE" xpath="/REPORT_CODE"    />
+        <Field id="reportName" desc="报表名称" status="F" edittype="text" datatype="string" size="256" primary="true" readonly="false" type="REPORT_NAME" xpath="/REPORT_NAME"    />
+    </Fields>
+    <Parameters>
+        <Parameter id="value" desc="报表名称" value="" />
+        <Parameter id="_sqlId" desc="SqlId" value="CcrsAllReportInfoSelect" />
+        <!--select REPORT_CODE,REPORT_CODE||'-'||REPORT_NAME REPORT_NAME from OPR_REPORT_INFO where 1=1 and REPORT_NAME like  '%'||:"value"||'%'-->
+    </Parameters>
+    <Where>
+    </Where>
+    <Operations>
+    </Operations>
+</CommQry>
