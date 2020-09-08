@@ -1,0 +1,119 @@
+<Document type="Info" name="InAcctInf" code="210" desc="个人借贷账户信息" table="MBT_210_RPT" sql="select * from MBT_210_RPT where 1=1 and  DATA_STATUS='24' #{RPT_DATE,date=yyyyMMdd,and }  #{ORG_ID,string,and,IN} ">
+	<Element type="InfoBase" name="AcctBsSgmt" data="Entity" table="MBT_210_RPT">
+		<Element type="Colum" name="InfRecType" field="B_INF_REC_TYPE"/>
+		<Element type="Colum" name="AcctType" field="B_ACCT_TYPE"/>
+		<Element type="Colum" name="AcctCode" field="B_ACCT_CODE"/>
+		<Element type="Colum" name="RptDate" format="date={yyyy-MM-dd}" field="B_RPT_DATE"/>
+		<Element type="Colum" name="RptDateCode" field="B_RPT_DATE_CODE"/>
+		<Element type="Colum" name="Name" field="B_NAME"/>
+		<Element type="Colum" name="IDType" field="B_ID_TYPE"/>
+		<Element type="Colum" name="IDNum" field="B_ID_NUM"/>
+		<Element type="Colum" name="MngmtOrgCode" field="B_MNGMT_ORG_CODE"/>
+	</Element>
+
+	<Element type="InfoBase" name="AcctBsInfSgmt" data="Entity" table="MBT_210_RPT">
+		<Element type="Colum" name="BusiLines" field="C_BUSI_LINES"/>
+		<Element type="Colum" name="BusiDtlLines" field="C_BUSI_DTL_LINES"/>
+		<Element type="Colum" name="OpenDate" format="date={yyyy-MM-dd}" field="C_OPEN_DATE"/>
+		<Element type="Colum" name="AcctCredLine" field="C_ACCT_CRED_LINE_AMT_LCY" script="B_ACCT_TYPE=='R1'||B_ACCT_TYPE=='R2'||B_ACCT_TYPE=='R3'"/>
+		<Element type="Colum" name="Cy" field="C_CY"/>
+		<Element type="Colum" name="LoanAmt" field="C_LOAN_AMT_LCY" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='R4'||B_ACCT_TYPE=='C1'"/>
+		<Element type="Colum" name="Flag" field="C_FLAG" script="B_ACCT_TYPE=='D1'"/>
+		<Element type="Colum" name="DueDate" format="date={yyyy-MM-dd}" field="C_DUE_DATE" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='R1'||B_ACCT_TYPE=='R2'||B_ACCT_TYPE=='R3'||B_ACCT_TYPE=='R4'"/>
+		<Element type="Colum" name="RepayMode" field="C_REPAY_MODE" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='R1'||B_ACCT_TYPE=='R4'"/>
+		<Element type="Colum" name="RepayFreqcy" field="C_REPAY_FREQCY" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='R1'||B_ACCT_TYPE=='R4'"/>
+		<Element type="Colum" name="RepayPrd" field="C_REPAY_PRD" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='R4'"/>
+		<Element type="Colum" name="ApplyBusiDist" field="C_APPLY_BUSI_DIST" condition="B_ACCT_TYPE=('D1','R1','R2','R3','R4')" script="B_ACCT_TYPE!='C1'"/>
+		<Element type="Colum" name="GuarMode" field="C_GUAR_MODE" script="B_ACCT_TYPE!='C1'"/>
+		<Element type="Colum" name="OthRepyGuarWay" field="C_OTH_REPY_GUAR_WAY" script="B_ACCT_TYPE!='C1'"/>
+		<Element type="Colum" name="AssetTrandFlag" field="C_ASSET_TRAND_FLAG" script="B_ACCT_TYPE!='C1'"/>
+		<Element type="Colum" name="FundSou" field="C_FUND_SOU" script="B_ACCT_TYPE!='C1'"/>
+		<Element type="Colum" name="LoanForm" field="C_LOAN_FORM" script="B_ACCT_TYPE!='C1'"/>
+		<Element type="Colum" name="CreditID" field="C_CREDIT_ID" script="B_ACCT_TYPE=='R2'||B_ACCT_TYPE=='R3'"/>
+		<Element type="Colum" name="LoanConCode" field="C_LOAN_CON_CODE" condition="B_ACCT_TYPE=('D1')" script="B_ACCT_TYPE=='D1'&amp;&amp;C_BUSI_DTL_LINES=='11'"/>
+		<Element type="Colum" name="FirstHouLoanFlag" field="C_FIRST_HOU_LOAN_FLAG" condition="B_ACCT_TYPE=('D1')" script="B_ACCT_TYPE=='D1'&amp;&amp;C_BUSI_DTL_LINES=='11'"/>
+	</Element>
+
+	<Element type="InfoBase" name="RltRepymtInfSgmt" data="Collection" size="RltRepymtNm" entity="RltRepymtInf" table="MBT_210_D_RPT" sql="select ${colums} from  MBT_210_D_RPT where MBT_210_D_RPT.PDATA_ID=${DATA_ID}">
+		<Element type="Colum" name="InfoIDType" field="D_ARLP_ID_TYPE"/>
+		<Element type="Colum" name="ArlpName" field="D_ARLP_NAME"/>
+		<Element type="Colum" name="ArlpCertType" field="D_ARLP_CERT_TYPE"/>
+		<Element type="Colum" name="ArlpCertNum" field="D_ARLP_CERT_NUM"/>
+		<Element type="Colum" name="ArlpType" field="D_ARLP_TYPE"/>
+		<Element type="Colum" name="ArlpAmt" field="D_ARLP_AMT_ORG" default=""/>
+		<Element type="Colum" name="WartySign" field="D_WARTY_SIGN" default=""/>
+		<Element type="Colum" name="MaxGuarMcc" field="D_MAX_GUAR_MCC" default=""/>
+	</Element>
+
+	<Element type="InfoBase" name="MotgaCltalCtrctInfSgmt" data="Collection" size="CcNm" entity="CccInf" table="MBT_210_E_RPT" sql="select ${colums} from  MBT_210_E_RPT where MBT_210_E_RPT.PDATA_ID=${DATA_ID}">
+		<Element type="Colum" name="Ccc" field="E_CCC"/>
+	</Element>
+
+	<Element type="InfoBase" name="AcctCredSgmt" data="Entity" table="MBT_210_RPT">
+		<Element type="Colum" name="Mcc" field="F_MCC"/>
+	</Element>
+
+	<Element type="InfoBase" name="OrigCreditorInfSgmt" data="Entity" table="MBT_210_RPT">
+		<Element type="Colum" name="InitCredName" field="G_INIT_CRED_NAME"/>
+		<Element type="Colum" name="InitCredOrgNm" field="G_INIT_CRED_ORG_NM" default=""/>
+		<Element type="Colum" name="OrigDbtCate" field="G_ORIG_DBT_CATE"/>
+		<Element type="Colum" name="InitRpySts" field="G_INIT_RPY_STS"/>
+	</Element>
+
+	<Element type="InfoBase" name="AcctMthlyBlgInfSgmt" data="Entity" table="MBT_210_RPT">
+		<Element type="Colum" name="Month" format="date={yyyy-MM}" field="H_MONTH"/>
+		<Element type="Colum" name="SettDate" format="date={yyyy-MM-dd}" field="H_SETT_DATE" default=""/>
+		<Element type="Colum" name="AcctStatus" field="H_ACCT_STATUS"/>
+		<Element type="Colum" name="AcctBal" field="H_ACCT_BAL_LCY"/>
+		<Element type="Colum" name="PridAcctBal" field="" script="B_ACCT_TYPE=='R2'"/>
+		<Element type="Colum" name="UsedAmt" field="" script="B_ACCT_TYPE=='R2'"/>
+		<Element type="Colum" name="NotIsuBal" field="" script="B_ACCT_TYPE=='R2'"/>
+		<Element type="Colum" name="RemRepPrd" field="H_REM_REP_PRD" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='R1'||B_ACCT_TYPE=='R2'||B_ACCT_TYPE=='R4'"/>
+		<Element type="Colum" name="FiveCate" field="H_FIVE_CATE" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='R1'||B_ACCT_TYPE=='R2'||B_ACCT_TYPE=='R3'||B_ACCT_TYPE=='R4'"/>
+		<Element type="Colum" name="FiveCateAdjDate" format="date={yyyy-MM-dd}" field="H_FIVE_CATE_ADJ_DATE" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='R1'||B_ACCT_TYPE=='R2'||B_ACCT_TYPE=='R3'||B_ACCT_TYPE=='R4'"/>
+		<Element type="Colum" name="RpyStatus" field="H_RPY_STATUS" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='R1'||B_ACCT_TYPE=='R2'||B_ACCT_TYPE=='R3'||B_ACCT_TYPE=='R4'"/>
+		<Element type="Colum" name="RpyPrct" field="H_RPY_PRCT" condition="B_ACCT_TYPE=('R2')" script="B_ACCT_TYPE=='R2'"/>
+		<Element type="Colum" name="OverdPrd" field="H_OVERD_PRD" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='R1'||B_ACCT_TYPE=='R2'||B_ACCT_TYPE=='R4'"/>
+		<Element type="Colum" name="TotOverd" field="H_TOT_OVERD_LCY" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='R1'||B_ACCT_TYPE=='R2'||B_ACCT_TYPE=='R4'"/>
+		<Element type="Colum" name="OverdPrinc" field="H_OVAER_PRINC_LCY" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='R1'||B_ACCT_TYPE=='R4'"/> <!--数据库建表字段错误-->
+		<Element type="Colum" name="Oved31_60Princ" field="H_OVERD31_60PRINC_LCY" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='R1'||B_ACCT_TYPE=='R4'"/>
+		<Element type="Colum" name="Oved61_90Princ" field="H_OVERD61_90PRINC_LCY" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='R1'||B_ACCT_TYPE=='R4'"/>
+		<Element type="Colum" name="Oved91_180Princ" field="H_OVERD91_180PRINC_LCY" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='R1'||B_ACCT_TYPE=='R4'"/>
+		<Element type="Colum" name="OvedPrinc180" field="H_OVERD_PRINC180_LCY" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='R1'||B_ACCT_TYPE=='R4'"/>
+		<Element type="Colum" name="OvedrawBaOve180" field="H_OVERD_RAW_BA_OVE180_LCY" script="B_ACCT_TYPE=='R3'"/>
+		<Element type="Colum" name="CurRpyAmt" field="H_CUR_RPY_AMT_LCY" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='R1'||B_ACCT_TYPE=='R2'||B_ACCT_TYPE=='R4'"/>
+		<Element type="Colum" name="ActRpyAmt" field="H_ACT_RPY_AMT_LCY"/>
+		<Element type="Colum" name="LatRpyDate" format="date={yyyy-MM-dd}" field="H_LAT_RPY_DATE"/>
+		<Element type="Colum" name="CloseDate" format="date={yyyy-MM-dd}" field="H_CLOSE_DATE" default=""/>
+	</Element>
+
+	<Element type="InfoBase" name="SpecPrdSgmt" data="Entity" table="MBT_210_RPT">
+		<Element type="Colum" name="SpecLine" field="I_MONTH"/>
+		<Element type="Colum" name="SpecEfctDate" format="date={yyyy-MM-dd}" field="I_SETT_DATE"/>
+		<Element type="Colum" name="SpecEndDate" format="date={yyyy-MM-dd}" field="I_ACCT_STATUS"/>
+		<Element type="Colum" name="UsedInstAmt" field="I_ACCT_BAL"/>
+	</Element>
+
+	<Element type="InfoBase" name="AcctDbtInfSgmt" data="Entity" table="MBT_210_RPT">
+		<Element type="Colum" name="AcctStatus" field="J_ACCT_STATUS"/>
+		<Element type="Colum" name="AcctBal" field="J_ACCT_BAL_LCY"/>
+		<Element type="Colum" name="FiveCate" field="J_FIVE_CATE"/>
+		<Element type="Colum" name="FiveCateAdjDate" format="date={yyyy-MM-dd}" field="J_FIVE_CATE_ADJ_DATE"/>
+		<Element type="Colum" name="RemRepPrd" field="J_REM_REP_PRD"/>
+		<Element type="Colum" name="RpyStatus" field="J_RPY_STATUS"/>
+		<Element type="Colum" name="OverdPrd" field="J_OVERD_PRD"/>
+		<Element type="Colum" name="TotOverd" field="J_TOT_OVERD_LCY"/>
+		<Element type="Colum" name="LatRpyAmt" field="J_LAT_RPY_AMT_LCY"/>
+		<Element type="Colum" name="LatRpyDate" format="date={yyyy-MM-dd}" field="J_LAT_RPY_DATE"/>
+		<Element type="Colum" name="CloseDate" format="date={yyyy-MM-dd}" field="J_CLOSE_DATE" default=""/>
+	</Element>
+
+	<Element type="InfoBase" name="AcctSpecTrstDspnSgmt" data="Collection" size="CagOfTrdNm" entity="CagOfTrdInf" table="MBT_210_K_RPT" sql="select ${colums} from  MBT_210_K_RPT where MBT_210_K_RPT.PDATA_ID=${DATA_ID}">
+		<Element type="Colum" name="ChanTranType" field="K_CHAN_TRAN_TYPE"/>
+		<Element type="Colum" name="TranDate" format="date={yyyy-MM-dd}" field="K_TRAN_DATE"/>
+		<Element type="Colum" name="TranAmt" field="K_TRAN_AMT_ORG"/>
+		<Element type="Colum" name="DueTranMon" field="K_DUE_TRAN_MON"/>
+		<Element type="Colum" name="DetInfo" field="K_DET_INFO" default=""/>
+	</Element>
+
+</Document>
