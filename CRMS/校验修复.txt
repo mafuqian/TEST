@@ -1,1 +1,0 @@
-select 1 from (select case when count(*) > 0 then 1 else 0 end as tcnt FROM (select * from (SELECT * FROM (select * from MBT_210_RPT where MBT_210_RPT.B_ACCT_CODE = :B_ACCT_CODE order by data_date desc) WHERE ROWNUM = 1) where H_ACCT_STATUS IN  ( 3, 4) or (H_ACCT_STATUS=2 AND B_ACCT_TYPE='C1'))) where tcnt = 0
