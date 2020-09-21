@@ -1,0 +1,85 @@
+<Document type="Info" name="InBasInf" table="MBT_110_RPT" sql="select * from MBT_110_RPT where 1=1 and  DATA_STATUS='24' #{RPT_DATE,date=yyyyMMdd,and} #{ORG_ID,string,and,IN}  order by DATA_ID" code="110" desc="个人基本信息">
+	<Element type="InfoBase" name="BsSgmt" data="Entity" table="MBT_110_RPT">
+		<Element type="Colum" name="InfRecType" field="B_INF_REC_TYPE"/>
+		<Element type="Colum" name="Name" field="B_NAME"/>
+		<Element type="Colum" name="IDType" field="B_ID_TYPE"/>
+		<Element type="Colum" name="IDNum" field="B_ID_NUM"/>
+		<Element type="Colum" name="InfSurcCode" field="B_INF_SURC_CODE"/>
+		<Element type="Colum" name="RptDate" format="date={yyyy-MM-dd}" field="B_RPT_DATE"/>
+		<Element type="Colum" name="RptDateCode" field="B_RPT_DATE_CODE"/>
+		<Element type="Colum" name="Cimoc" field="B_CIMOC"/>
+		<Element type="Colum" name="CustomerType" field="B_CUSTOMER_TYPE"/>
+	</Element>
+
+	<Element type="InfoBase" name="IDSgmt" data="Collection" size="IDNm" updatetime="IDInfoUpDate=${C_ID_INFO_UP_DATE}" format="date={yyyy-MM-dd}" entity="IDRec" table="MBT_110_C_RPT" sql="select ${colums} from  MBT_110_C_RPT where MBT_110_C_RPT.PDATA_ID=${DATA_ID}">
+		<Element type="Colum" name="Alias" field="ALIAS"/>
+		<Element type="Colum" name="OthIDType" field="OTH_ID_TYPE"/>
+		<Element type="Colum" name="OthIDNum" field="OTH_ID_NUM"/>
+	</Element>
+
+	<Element type="InfoBase" name="FcsInfSgmt" data="Entity" table="MBT_110_RPT">
+		<Element type="Colum" name="Sex" field="D_SEX"/>
+		<Element type="Colum" name="DOB" format="date={yyyy-MM-dd}" field="D_DOB" default=""/>
+		<Element type="Colum" name="Nation" field="D_NATION"/>
+		<Element type="Colum" name="HouseAdd" field="D_HOUSE_ADD" default=""/>
+		<Element type="Colum" name="HhDist" field="D_HH_DIST" default=""/>
+		<Element type="Colum" name="CellPhone" field="D_CELL_PHONE" default=""/>
+		<Element type="Colum" name="Email" field="D_EMAIL" default=""/>
+		<Element type="Colum" name="FcsInfoUpDate" format="date={yyyy-MM-dd}" field="D_FCS_INFO_UP_DATE"/>
+	</Element>
+
+	<Element type="InfoBase" name="SpsInfSgmt" data="Entity" table="MBT_110_RPT">
+		<Element type="Colum" name="MariStatus" field="E_MARI_STATUS"/>
+		<Element type="Colum" name="SpoName" field="E_SPO_NAME" condition="E_MARI_STATUS=('20','21','22','23')" script="E_MARI_STATUS =='20'||E_MARI_STATUS ==='21'||E_MARI_STATUS =='22'||E_MARI_STATUS =='23'"/>
+		<Element type="Colum" name="SpoIDType" field="E_SPO_ID_TYPE" condition="E_MARI_STATUS=('20','21','22','23')" script="E_MARI_STATUS =='20'||E_MARI_STATUS ==='21'||E_MARI_STATUS =='22'||E_MARI_STATUS =='23'"/>
+		<Element type="Colum" name="SpoIDNum" field="E_SPO_ID_NUM" condition="E_MARI_STATUS=('20','21','22','23')" script="E_MARI_STATUS =='20'||E_MARI_STATUS ==='21'||E_MARI_STATUS =='22'||E_MARI_STATUS =='23'"/>
+		<Element type="Colum" name="SpoTel" field="E_SPO_TEL" condition="E_MARI_STATUS=('20','21','22','23')" script="E_MARI_STATUS =='20'||E_MARI_STATUS ==='21'||E_MARI_STATUS =='22'||E_MARI_STATUS =='23'"/>
+		<Element type="Colum" name="SpsCmpyNm" field="E_SPS_CMPY_NM" condition="E_MARI_STATUS=('20','21','22','23')" script="E_MARI_STATUS =='20'||E_MARI_STATUS ==='21'||E_MARI_STATUS =='22'||E_MARI_STATUS =='23'"/>
+		<Element type="Colum" name="SpsInfoUpDate" format="date={yyyy-MM-dd}" field="E_SPS_INFO_UP_DATE"/>
+	</Element>
+
+	<Element type="InfoBase" name="EduInfSgmt" data="Entity" table="MBT_110_RPT">
+		<Element type="Colum" name="EduLevel" field="F_EDU_LEVEL"/>
+		<Element type="Colum" name="AcaDegree" field="F_ACA_DEGREE"/>
+		<Element type="Colum" name="EduInfoUpDate" format="date={yyyy-MM-dd}" field="F_EDU_INFO_UP_DATE"/>
+	</Element>
+
+	<Element type="InfoBase" name="OctpnInfSgmt" data="Entity" table="MBT_110_RPT">
+		<Element type="Colum" name="EmpStatus" field="G_EMP_STATUS"/>
+		<Element type="Colum" name="CpnName" field="G_CPN_NAME" script="G_EMP_STATUS == '11' || G_EMP_STATUS == '13' || G_EMP_STATUS == '17' || G_EMP_STATUS == '21' || G_EMP_STATUS == '24' || G_EMP_STATUS == '91'"/>
+		<Element type="Colum" name="CpnType" field="G_CPN_TYPE" script="G_EMP_STATUS == '11' || G_EMP_STATUS == '13' || G_EMP_STATUS == '17' || G_EMP_STATUS == '21' || G_EMP_STATUS == '24' || G_EMP_STATUS == '91'"/>
+		<Element type="Colum" name="Industry" field="G_INDUSTRY" script="G_EMP_STATUS == '11' || G_EMP_STATUS == '13' || G_EMP_STATUS == '17' || G_EMP_STATUS == '21' || G_EMP_STATUS == '24' || G_EMP_STATUS == '91'"/>
+		<Element type="Colum" name="CpnAddr" field="G_CPN_ADDR" condition="G_EMP_STATUS=('11','13','17','21','24','91')" script="G_EMP_STATUS == '11' || G_EMP_STATUS == '13' || G_EMP_STATUS == '17' || G_EMP_STATUS == '21' || G_EMP_STATUS == '24' || G_EMP_STATUS == '91'"/>
+		<Element type="Colum" name="CpnPc" field="G_CPN_PC" condition="G_EMP_STATUS=('11','13','17','21','24','91')" script="G_EMP_STATUS == '11' || G_EMP_STATUS == '13' || G_EMP_STATUS == '17' || G_EMP_STATUS == '21' || G_EMP_STATUS == '24' || G_EMP_STATUS == '91'"/>
+		<Element type="Colum" name="CpnDist" field="G_CPN_DIST" condition="G_EMP_STATUS=('11','13','17','21','24','91')" script="G_EMP_STATUS == '11' || G_EMP_STATUS == '13' || G_EMP_STATUS == '17' || G_EMP_STATUS == '21' || G_EMP_STATUS == '24' || G_EMP_STATUS == '91'"/>
+		<Element type="Colum" name="CpnTEL" field="G_CPN_TEL" condition="G_EMP_STATUS=('11','13','17','21','24','91')" script="G_EMP_STATUS == '11' || G_EMP_STATUS == '13' || G_EMP_STATUS == '17' || G_EMP_STATUS == '21' || G_EMP_STATUS == '24' || G_EMP_STATUS == '91'"/>
+		<Element type="Colum" name="Occupation" field="G_OCCUPATION" script="G_EMP_STATUS == '11' || G_EMP_STATUS == '13' || G_EMP_STATUS == '17' || G_EMP_STATUS == '21' || G_EMP_STATUS == '24' || G_EMP_STATUS == '91'"/>
+		<Element type="Colum" name="Title" field="G_TITLE" script="G_EMP_STATUS == '11' || G_EMP_STATUS == '13' || G_EMP_STATUS == '17' || G_EMP_STATUS == '21' || G_EMP_STATUS == '24' || G_EMP_STATUS == '91'"/>
+		<Element type="Colum" name="TechTitle" field="G_TECH_TITLE" script="G_EMP_STATUS == '11' || G_EMP_STATUS == '13' || G_EMP_STATUS == '17' || G_EMP_STATUS == '21' || G_EMP_STATUS == '24' || G_EMP_STATUS == '91'"/>
+		<Element type="Colum" name="WorkStartDate" format="date={yyyy-MM-dd}" field="G_WORK_START_DATE" condition="G_EMP_STATUS=('11','13','17','21','24','91')" script="G_EMP_STATUS == '11' || G_EMP_STATUS == '13' || G_EMP_STATUS == '17' || G_EMP_STATUS == '21' || G_EMP_STATUS == '24' || G_EMP_STATUS == '91'"/>
+		<Element type="Colum" name="OctpnInfoUpDate" format="date={yyyy-MM-dd}" field="G_OCTPN_INFO_UP_DATE"/>
+	</Element>
+
+	<Element type="InfoBase" name="RedncInfSgmt" data="Entity" table="MBT_110_RPT">
+		<Element type="Colum" name="ResiStatus" field="H_RESI_STATUS"/>
+		<Element type="Colum" name="ResiAddr" field="H_RESI_ADDR" default=""/>
+		<Element type="Colum" name="ResiPc" field="H_RESI_PC" default=""/>
+		<Element type="Colum" name="ResiDist" field="H_RESI_DIST" default=""/>
+		<Element type="Colum" name="HomeTel" field="H_HOME_TEL" default=""/>
+		<Element type="Colum" name="ResiInfoUpDate" format="date={yyyy-MM-dd}" field="H_RESI_INFO_UP_DATE"/>
+	</Element>
+
+	<Element type="InfoBase" name="MlgInfSgmt" data="Entity" table="MBT_110_RPT">
+		<Element type="Colum" name="MailAddr" field="I_MAIL_ADDR"/>
+		<Element type="Colum" name="MailPc" field="I_MAIL_PC"/>
+		<Element type="Colum" name="MailDist" field="I_MAIL_DIST" default=""/>
+		<Element type="Colum" name="MlgInfoUpDate" format="date={yyyy-MM-dd}" field="I_MLG_INFO_UP_DATE"/>
+	</Element>
+
+	<Element type="InfoBase" name="IncInfSgmt" data="Entity" table="MBT_110_RPT">
+		<Element type="Colum" name="AnnlInc" field="J_ANNL_INC_LCY"/>
+		<Element type="Colum" name="TaxIncome" field="J_TAX_INCOME_LCY"/>
+		<Element type="Colum" name="IncInfoUpDate" format="date={yyyy-MM-dd}" field="J_INC_INFO_UP_DATE"/>
+	</Element>
+
+</Document>
