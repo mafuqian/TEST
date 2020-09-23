@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<Document type="Info" name="InCtfItgInf"
+	table="MBT_140_RPT" sql="select * from MBT_140_RPT where 1=1 and  DATA_STATUS='24' #{RPT_DATE,date=yyyyMMdd,and }  #{ORG_ID,string,and,IN}  order by DATA_ID" code="140" desc="个人证件整合信息记录">
+	<Element type="InfoBase" name="InCtfItgInf" data="Entity"
+		table="MBT_140_RPT">
+		<Element type="Colum" name="InfRecType" field="INF_REC_TYPE" />
+		<Element type="Colum" name="Name" field="NAME" />
+		<Element type="Colum" name="IDType" field="ID_TYPE" />
+		<Element type="Colum" name="IDNum" field="ID_NUM" />
+		<Element type="Colum" name="OthName" field="OTH_NAME" />
+		<Element type="Colum" name="OthIDType" field="OTH_ID_TYPE" />
+		<Element type="Colum" name="OthIDNum" field="OTH_ID_NUM" />
+		<Element type="Colum" name="OthAssFlg" field="OTH_ASS_FLG" />
+		<Element type="Colum" name="InfSurcCode" field="INF_SURC_CODE" />
+		<Element type="Colum" name="RptDate" format="date={yyyy-MM-dd}"  field="RPT_DATE" />
+	</Element>
+</Document>

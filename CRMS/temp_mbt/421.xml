@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<Document type="Info" name="EnAcctInfIDCagsInf"
+	table="MBT_421_RPT" sql="select * from MBT_421_RPT where 1=1 and  DATA_STATUS='24' #{RPT_DATE,date=yyyyMMdd,and }  #{ORG_ID,string,and,IN} order by DATA_ID" code="421" desc="企业授信协议标识变更请求记录">
+	<Element type="InfoBase" name="EnAcctInfIDCagsInf" data="Entity"
+		table="MBT_421_RPT">
+		<Element type="Colum" name="InfRecType" field="INF_REC_TYPE" />
+		<Element type="Colum" name="OdBnesCode" field="OD_BNES_CODE" />
+		<Element type="Colum" name="NwBnesCode" field="NW_BNES_CODE" />
+	</Element>
+</Document>

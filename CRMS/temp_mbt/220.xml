@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<Document type="Info" name="InCtrctInf"
+          table="MBT_220_RPT" sql="select * from MBT_220_RPT where 1=1 and  DATA_STATUS='24' #{RPT_DATE,date=yyyyMMdd,and }  #{ORG_ID,string,and,IN}  order by DATA_ID"  code="220" desc="个人授信协议信息记录">
+    <Element type="InfoBase" name="CtrctBsSgmt" data="Entity"
+             table="MBT_220_RPT" >
+        <Element type="Colum" name="InfRecType" field="B_INF_REC_TYPE" />
+        <Element type="Colum" name="ContractCode" field="B_CONTRACT_CODE" />
+        <Element type="Colum" format="date={yyyy-MM-dd}" name="RptDate" field="B_RPT_DATE" />
+        <Element type="Colum" name="RptDateCode" field="B_RPT_DATE_CODE" />
+        <Element type="Colum" name="Name" field="B_NAME" />
+        <Element type="Colum" name="IDType" field="B_ID_TYPE" />
+        <Element type="Colum" name="IDNum" field="B_ID_NUM" />
+        <Element type="Colum" name="MngmtOrgCode"
+                 field="B_MNGMT_ORG_CODE" />
+    </Element>
+
+    <Element type="InfoBase" name="CtrctCertRelSgmt" data="Collection"
+             size="BrerNm" entity="CtrctCertRel"
+             table="MBT_220_C_RPT"
+             sql="select ${colums} from  MBT_220_C_RPT where MBT_220_C_RPT.PDATA_ID=${DATA_ID}" >
+        <Element type="Colum" name="BrerType" field="C_BRER_TYPE" />
+        <Element type="Colum" name="CertRelName" field="C_CERT_REL_NAME" />
+        <Element type="Colum" name="CertRelIDType" field="C_CERT_REL_ID_TYPE" />
+        <Element type="Colum" name="CertRelIDNum" field="C_CERT_REL_ID_NUM" />
+    </Element>
+    <Element type="InfoBase" name="CreditLimSgmt" data="Entity" table="MBT_220_RPT">
+        <Element type="Colum" name="CreditLimType" field="D_CREDIT_LIM_TYPE" />
+        <Element type="Colum" name="LimLoopFlg" field="D_LIM_LOOP_FLG" />
+        <Element type="Colum" name="CreditLim" field="D_CREDIT_LIM_LCY" default=""/>
+        <Element type="Colum" name="Cy" field="D_CY" />
+        <Element type="Colum" format="date={yyyy-MM-dd}" name="ConEffDate" field="D_CON_EFF_DATE" />
+        <Element type="Colum" format="date={yyyy-MM-dd}" name="ConExpDate" field="D_CON_EXP_DATE" />
+        <Element type="Colum" name="ConStatus" field="D_CON_STATUS" />
+        <Element type="Colum" name="CreditRest" field="D_CREDIT_REST_LCY" script="!isEmpty(D_CREDIT_REST) &amp;&amp; !isEmpty(D_CREDIT_REST_CODE)"/>
+        <Element type="Colum" name="CreditRestCode" field="D_CREDIT_REST_CODE" script="!isEmpty(D_CREDIT_REST) &amp;&amp; !isEmpty(D_CREDIT_REST_CODE)"/>
+    </Element>
+</Document>

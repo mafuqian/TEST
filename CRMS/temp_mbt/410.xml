@@ -1,0 +1,91 @@
+<Document type="Info" name="EnAcctInf" table="MBT_410_RPT" sql="select * from MBT_410_RPT where 1=1 and  DATA_STATUS='24' #{RPT_DATE,date=yyyyMMdd,and }  #{ORG_ID,string,and,IN} order by DATA_ID" code="410" desc="企业借贷账户信息记录">
+    <Element type="InfoBase" name="AcctBsSgmt" data="Entity" table="MBT_410_RPT">
+        <Element type="Colum" name="InfRecType" field="B_INF_REC_TYPE"/>
+        <Element type="Colum" name="AcctType" field="B_ACCT_TYPE"/>
+        <Element type="Colum" name="AcctCode" field="B_ACCT_CODE"/>
+        <Element type="Colum" format="date={yyyy-MM-dd}" name="RptDate" field="B_RPT_DATE"/>
+        <Element type="Colum" name="RptDateCode" field="B_RPT_DATE_CODE"/>
+        <Element type="Colum" name="Name" field="B_NAME"/>
+        <Element type="Colum" name="IDType" field="B_ID_TYPE"/>
+        <Element type="Colum" name="IDNum" field="B_ID_NUM"/>
+        <Element type="Colum" name="MngmtOrgCode" field="B_MNGMT_ORG_CODE"/>
+    </Element>
+
+    <Element type="InfoBase" name="AcctBsInfSgmt" data="Entity" table="MBT_410_RPT">
+        <Element type="Colum" name="BusiLines" field="C_BUSI_LINES"/>
+        <Element type="Colum" name="BusiDtlLines" field="C_BUSI_DTL_LINES"/>
+        <Element type="Colum" format="date={yyyy-MM-dd}" name="OpenDate" field="C_OPEN_DATE"/>
+        <Element type="Colum" name="Cy" field="C_CY"/>
+        <Element type="Colum" name="AcctCredLine" field="C_ACCT_CRED_LINE_AMT" script="B_ACCT_TYPE=='R1'"/>
+        <Element type="Colum" name="LoanAmt" field="C_LOAN_AMT" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='D2'||B_ACCT_TYPE=='R4'||B_ACCT_TYPE=='C1'"/>
+        <Element type="Colum" name="Flag" field="C_FLAG" script="B_ACCT_TYPE=='D1'"/>
+        <Element type="Colum" format="date={yyyy-MM-dd}" name="DueDate" field="C_DUE_DATE" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='D2'||B_ACCT_TYPE=='R1'||B_ACCT_TYPE=='R4'"/>
+        <Element type="Colum" name="RepayMode" field="C_REPAY_MODE" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='R1'||B_ACCT_TYPE=='R4'"/>
+        <Element type="Colum" name="RepayFreqcy" field="C_REPAY_FREQCY" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='R1'||B_ACCT_TYPE=='R4'"/>
+        <Element type="Colum" name="ApplyBusiDist" field="C_APPLY_BUSI_DIST" condition="B_ACCT_TYPE=('D1','D2','R1','R4')" script="B_ACCT_TYPE !='C1'"/>
+        <Element type="Colum" name="GuarMode" field="C_GUAR_MODE" script="B_ACCT_TYPE !='C1'"/>
+        <Element type="Colum" name="OthRepyGuarWay" field="C_OTH_REPY_GUAR_WAY" script="B_ACCT_TYPE !='C1'"/>
+        <Element type="Colum" name="LoanTimeLimCat" field="C_LOAN_TIME_LIM_CAT" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='R4'"/>
+        <Element type="Colum" name="LoaFrm" field="C_LOA_FRM" script="B_ACCT_TYPE !='C1'"/>
+        <Element type="Colum" name="ActInvest" field="C_ACT_INVEST" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='R1'||B_ACCT_TYPE=='R4'"/>
+        <Element type="Colum" name="FundSou" field="C_FUND_SOU" script="B_ACCT_TYPE !='C1'"/>
+        <Element type="Colum" name="AssetTrandFlag" field="C_ASSET_TRAND_FLAG" script="B_ACCT_TYPE=='D1'||B_ACCT_TYPE=='R1'||B_ACCT_TYPE=='R4'"/>
+    </Element>
+
+
+    <Element type="InfoBase" name="RltRepymtInfSgmt" data="Collection" size="RltRepymtNm" entity="RltRepymtInf" table="MBT_410_D_RPT" sql="select ${colums} from  MBT_410_D_RPT where MBT_410_D_RPT.PDATA_ID=${DATA_ID}">
+        <Element type="Colum" name="ArlpIDType" field="D_ARLP_ID_TYPE"/>
+        <Element type="Colum" name="ArlpName" field="D_ARLP_NAME"/>
+        <Element type="Colum" name="ArlpCertType" field="D_ARLP_CERT_TYPE"/>
+        <Element type="Colum" name="ArlpCertNum" field="D_ARLP_CERT_NUM"/>
+        <Element type="Colum" name="ArlpType" field="D_ARLP_TYPE"/>
+        <Element type="Colum" name="ArlpAmt" field="D_ARLP_AMT" default=""/>
+        <Element type="Colum" name="WartySign" field="D_WARTY_SIGN" default=""/>
+        <Element type="Colum" name="MaxGuarMcc" field="D_MAX_GUAR_MCC" default=""/>
+    </Element>
+
+    <Element type="InfoBase" name="MotgaCltalCtrctInfSgmt" data="Collection" size="CcNm" entity="CccInf" table="MBT_410_E_RPT" sql="select ${colums} from  MBT_410_E_RPT where MBT_410_E_RPT.PDATA_ID=${DATA_ID}">
+        <Element type="Colum" name="Ccc" field="E_CCC"/>
+    </Element>
+
+    <Element type="InfoBase" name="AcctCredSgmt" data="Entity" table="MBT_410_RPT">
+        <Element type="Colum" name="Mcc" field="F_MCC"/>
+    </Element>
+
+    <Element type="InfoBase" name="OrigCreditorInfSgmt" data="Entity" table="MBT_410_RPT">
+        <Element type="Colum" name="InitCredName" field="G_INIT_CRED_NAME"/>
+        <Element type="Colum" name="InitCedOrgCode" field="G_INIT_CED_ORG_CODE" default=""/>
+        <Element type="Colum" name="OrigDbtCate" field="G_ORIG_DBT_CATE"/>
+        <Element type="Colum" name="InitRpySts" field="G_INIT_RPY_STS"/>
+    </Element>
+
+    <Element type="InfoBase" name="ActLbltyInfSgmt" data="Entity" table="MBT_410_RPT">
+        <Element type="Colum" name="AcctStatus" field="H_ACCT_STATUS"/>
+        <Element type="Colum" name="AcctBal" field="H_ACCT_BAL"/>
+        <Element type="Colum" format="date={yyyy-MM-dd}" name="BalChgDate" field="H_BAL_CHG_DATE"/>
+        <Element type="Colum" name="FiveCate" field="H_FIVE_CATE"/>
+        <Element type="Colum" format="date={yyyy-MM-dd}" name="FiveCateAdjDate" field="H_FIVE_CATE_ADJ_DATE"/>
+        <Element type="Colum" name="PymtPrd" field="H_PYMT_PRD" script="B_ACCT_TYPE=='R1'"/>
+        <Element type="Colum" name="TotOverd" field="H_TOT_OVERD" script="B_ACCT_TYPE !='C1'"/>
+        <Element type="Colum" name="OverdPrinc" field="H_OVERD_PRINC" script="B_ACCT_TYPE !='C1'"/>
+        <Element type="Colum" name="OverdDy" field="H_OVERD_DY" script="B_ACCT_TYPE !='C1'"/>
+        <Element type="Colum" format="date={yyyy-MM-dd}" name="LatRpyDate" field="H_LAT_RPY_DATE"/>
+        <Element type="Colum" name="LatRpyAmt" field="H_LAT_RPY_AMT"/>
+        <Element type="Colum" name="LatRpyPrincAmt" field="H_LAT_RPY_PRINC_AMT"/>
+        <Element type="Colum" name="RpmtType" field="H_RPMT_TYPE"/>
+        <Element type="Colum" format="date={yyyy-MM-dd}" name="LatAgrrRpyDate" field="H_LAT_AGRR_RPY_DATE" script="B_ACCT_TYPE !='C1'"/>
+        <Element type="Colum" name="LatAgrrRpyAmt" field="H_LAT_AGRR_RPY_AMT" script="B_ACCT_TYPE !='C1'"/>
+        <Element type="Colum" format="date={yyyy-MM-dd}" name="NxtAgrrRpyDate" field="H_NXT_AGRR_RPY_DATE" default="" script="B_ACCT_TYPE !='C1'"/>
+        <Element type="Colum" format="date={yyyy-MM-dd}" name="CloseDate" field="H_CLOSE_DATE"  default=""/>
+    </Element>
+
+    <Element type="InfoBase" name="AcctSpecTrstDspnSgmt" data="Collection" size="CagOfTrdNm" entity="CagOfTrdInf" table="MBT_410_I_RPT" sql="select ${colums} from  MBT_410_I_RPT where MBT_410_I_RPT.PDATA_ID=${DATA_ID}">
+        <Element type="Colum" name="ChanTranType" field="I_CHAN_TRAN_TYPE"/>
+        <Element type="Colum" format="date={yyyy-MM-dd}" name="TranDate" field="I_TRAN_DATE"/>
+        <Element type="Colum" name="TranAmt" field="I_TRAN_AMT"/>
+        <Element type="Colum" name="DueTranMon" field="I_DUE_TRAN_MON"/>
+        <Element type="Colum" name="DetInfo" field="I_DET_INFO" default=""/>
+    </Element>
+
+
+</Document>
