@@ -1,0 +1,59 @@
+insert into gp_bm_inq_cfg (DATA_ID, DATA_DATE, CORP_ID, ORG_ID, GROUP_ID, NEXT_ACTION, DATA_STATUS, DATA_FLAG, DATA_SOURCE, CHECK_FLAG, CHECK_DESC, CHECK_ERR_TYPE, DATA_VERSION, DATA_REJ_DESC, DATA_DEL_DESC, DATA_CRT_USER, DATA_CRT_DATE, DATA_CRT_TIME, DATA_CHG_USER, DATA_CHG_DATE, DATA_CHG_TIME, DATA_APV_USER, DATA_APV_DATE, DATA_APV_TIME, RSV1, RSV2, RSV3, RSV4, RSV5, REMARK, SQL_ID, SQL_STRING, DETAIL_SQL_STRING, SYSTEM)
+values ('MatCustNoFloatWin_ds', null, 'TESTCORP', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 'MatCustNoFloatWin_ds', 'select B_NAME,
+       CUST_NO,
+       B_ID_TYPE,
+       B_ID_NUM,
+       B_INF_SURC_CODE,
+       B_CIMOC,
+       B_CUSTOMER_TYPE,
+       B_RPT_DATE
+  from MBT_110
+ where 1 = 1
+ @{_PRIV_COND}
+   and upper(ORG_ID) like upper(''%'' || :"orgId" || ''%'')
+   and upper(GROUP_ID) like upper(''%'' || :"groupId" || ''%'')
+   and upper(CUST_NO) like upper(''%'' || :"custNo" || ''%'')
+   and upper(B_NAME) like upper(''%'' || :"bName" || ''%'')
+   and upper(B_ID_NUM) like upper(''%'' || :"bIdNum" || ''%'')
+   and B_CUSTOMER_TYPE = :"bCustomerType"
+   and upper(DATA_CHG_USER) like upper(''%'' || :"dataChgUser" || ''%'')
+   and B_RPT_DATE_CODE = :"bRptDateCode"
+   and DATA_STATUS = :"dataStatus"
+   and FB_STATUS = :"fbStatus"
+   and DATA_DATE >= :"startDate"
+   and DATA_DATE <= :"endDate"
+   and B_RPT_DATE = :"bRptDate"
+   order by B_RPT_DATE DESC', null, null);
+
+insert into gp_bm_inq_cfg (DATA_ID, DATA_DATE, CORP_ID, ORG_ID, GROUP_ID, NEXT_ACTION, DATA_STATUS, DATA_FLAG, DATA_SOURCE, CHECK_FLAG, CHECK_DESC, CHECK_ERR_TYPE, DATA_VERSION, DATA_REJ_DESC, DATA_DEL_DESC, DATA_CRT_USER, DATA_CRT_DATE, DATA_CRT_TIME, DATA_CHG_USER, DATA_CHG_DATE, DATA_CHG_TIME, DATA_APV_USER, DATA_APV_DATE, DATA_APV_TIME, RSV1, RSV2, RSV3, RSV4, RSV5, REMARK, SQL_ID, SQL_STRING, DETAIL_SQL_STRING, SYSTEM)
+values ('MatEnterpriseCustNoFloatWin_ds', null, 'TESTCORP', null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 'MatEnterpriseCustNoFloatWin_ds', 'select B_ENT_NAME,
+       B_CUST_NO,
+       B_ENT_CERT,
+       B_ENT_CERT_NUM,
+       B_INF_SURC_CODE,
+       B_CUSTOMER_TYPE,
+       B_ETP_STS,
+       B_ORG_TYPE,
+       B_CIMOC,
+       B_RPT_DATE_CODE,
+       B_RPT_DATE,
+       ORG_ID,
+       GROUP_ID,
+       GROUP_ID,
+  from MBT_310
+ where 1 = 1
+ @{_PRIV_COND}
+   and upper(ORG_ID) like upper(''%'' || :"orgId" || ''%'')
+   and upper(GROUP_ID) LIKE upper(''%'' || :"groupId" || ''%'')
+   and upper(B_CUST_NO) like upper(''%'' || :"bCustNo" || ''%'')
+   and upper(B_ENT_NAME) like upper(''%'' || :"bEntName" || ''%'')
+   and upper(B_ENT_CERT_NUM) like upper(''%'' || :"bEntCertNum" || ''%'')
+   and B_CUSTOMER_TYPE = :"bCustomerType"
+   and B_ORG_TYPE = :"bOrgType"
+   and upper(B_ETP_STS) like upper(''%'' || :"bEtpSts" || ''%'')
+   and upper(DATA_CHG_USER) like upper(''%'' || :"dataChgUser" || ''%'')
+   and B_RPT_DATE_CODE = :"bRptDateCode"
+   and FB_STATUS = :"fbStatus"
+   and DATA_DATE >= :"startDate"
+   and DATA_DATE <= :"endDate"
+ order by B_RPT_DATE DESC', null, null);

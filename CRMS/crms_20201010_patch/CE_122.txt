@@ -1,0 +1,2 @@
+update GP_BM_ID_FIELDDATA set U_DATATYPE='2' where pguid='b730010676434c5bb09d902b59fd7733'  and  field_name='B_CIMOC';
+update GP_BM_ID_FIELDDATA set UMW_EXPRESSION='specificField(${value},1)'  where pguid='b730010676434c5bb09d902b59fd7733' and  field_name='DATA_ID';
