@@ -86,7 +86,7 @@ DBMS_OUTPUT.PUT_LINE('COMPARE_STR_S3 :' || COMPARE_STR_S3);
         DBMS_OUTPUT.PUT_LINE('SETP 5 :' || SQLSTR1);
     END IF;
     SQLSTR1 := SQLSTR1 || ') A ' ||
-               'INNER JOIN ' ||
+               'LEFT JOIN ' ||
                '(SELECT A.* ' ||
                'FROM ' || MBT_TABLENAME || '_RPT A, ' ||
                --获取最近的非逾期款项的记录
