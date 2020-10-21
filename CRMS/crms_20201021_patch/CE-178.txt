@@ -1,3 +1,0 @@
---CE-178
-
-update gp_qc_rule set script=null where data_id = 'MBT_210__H_RPY_PRCT';
