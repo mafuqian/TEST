@@ -873,12 +873,16 @@ BEGIN
                                                               WHEN T2.J_UPDATE_FLAG = '1' THEN V_T_DATE
                                                               WHEN T2.J_UPDATE_FLAG = '0'
                                                                   THEN T1.J_INC_INFO_UP_DATE END,
-                                T1.IS_RPT               = GET_ISRPT_CHANGE(T1.IS_RPT,
+                                /*T1.IS_RPT               = GET_ISRPT_CHANGE(T1.IS_RPT,
                                                                            (T2.B_UPDATE_FLAG || T2.D_UPDATE_FLAG ||
                                                                             T2.E_UPDATE_FLAG || T2.F_UPDATE_FLAG ||
                                                                             T2.G_UPDATE_FLAG || T2.H_UPDATE_FLAG ||
                                                                             T2.I_UPDATE_FLAG || T2.J_UPDATE_FLAG ||
-                                                                            '|')),
+                                                                            '|')),*/
+                                T1.IS_RPT               = (T2.B_UPDATE_FLAG || T2.D_UPDATE_FLAG ||
+                                                           T2.E_UPDATE_FLAG || T2.F_UPDATE_FLAG ||
+                                                           T2.G_UPDATE_FLAG || T2.H_UPDATE_FLAG ||
+                                                           T2.I_UPDATE_FLAG || T2.J_UPDATE_FLAG || '|'),
                                 T1.DATA_STATUS          = '00',
                                 T1.DATA_SOURCE          = '2',
                                 T1.DATA_CHG_USER        = 'SYSTEM',
