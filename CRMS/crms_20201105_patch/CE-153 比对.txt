@@ -1,0 +1,3 @@
+MBT_510_EX缺少C_CC_AMT_LCY这个字段
+可以用这个sql对比查询，应该有10条结果
+select * from user_tab_columns where column_name = 'C_CC_AMT_LCY'
