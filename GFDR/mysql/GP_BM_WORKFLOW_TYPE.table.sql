@@ -1,0 +1,7 @@
+CREATE TABLE GP_BM_WORKFLOW_TYPE(
+    DATA_ID VARCHAR(64) NOT NULL   COMMENT '数据ID' ,
+    FUNC_ID VARCHAR(32)    COMMENT '菜单ID' ,
+    BUTTON_ID VARCHAR(50)    COMMENT '按钮ID' ,
+    FLOW_TYPE CHAR(1)    COMMENT '流程类型N：nextaction,B：工作流' ,
+    TABLE_STYLE CHAR(1)    COMMENT '临时表模式1:原业务表 2:单独临时表 3:公共临时表' 
+) COMMENT = '工作流类型定义表' ENGINE=InnoDB;
