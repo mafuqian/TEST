@@ -1,0 +1,9 @@
+alter table MBT_210_D_EX add ODS_DATA_ID CHAR(32) ;
+alter table MBT_210_D_EX add HIS_DATE CHAR(8) ;
+alter table MBT_210_D_EX add HIS_DATE_TIME CHAR(14) ;
+alter table MBT_210_E_EX add ODS_DATA_ID CHAR(32) ;
+alter table MBT_210_E_EX add HIS_DATE CHAR(8) ;
+alter table MBT_210_E_EX add HIS_DATE_TIME CHAR(14) ;
+alter table MBT_210_K_EX add ODS_DATA_ID CHAR(32) ;
+alter table MBT_210_K_EX add HIS_DATE CHAR(8) ;
+alter table MBT_210_K_EX add HIS_DATE_TIME CHAR(14) ;

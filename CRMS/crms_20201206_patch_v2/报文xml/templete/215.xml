@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<Document type="Info" name="InSpcEvtDscInf"
+          table="MBT_215_RPT" sql="select * from MBT_215_RPT where 1=1 and  DATA_STATUS='24' #{RPT_DATE,date=yyyyMMdd,and }  #{ORG_ID,string,and,IN}  order by DATA_ID"  code="215" desc="个人借贷账户特殊事件说明记录">
+    <Element type="InfoBase" name="InSpcEvtDscInf" data="Entity"
+             table="MBT_215_RPT">
+        <Element type="Colum" name="InfRecType" field="INF_REC_TYPE" />
+        <Element type="Colum" name="AcctCode" field="ACCT_CODE" />
+        <Element type="Colum" name="OpetnType" field="OPETN_TYPE" />
+        <Element type="Colum" name="Month" format="date={yyyy-MM}" field="MONTH" />
+        <Element type="Colum" name="Flag" field="FLAG" />
+        <Element type="Colum" name="RptDate" format="date={yyyy-MM-dd}" field="RPT_DATE" />
+    </Element>
+</Document>

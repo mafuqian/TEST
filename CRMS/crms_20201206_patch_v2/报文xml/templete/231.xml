@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<Document type="Info" name="InSecAcctIDCagsInf"
+	table="MBT_231_RPT" sql="select * from MBT_231_RPT where 1=1 and  DATA_STATUS='24' #{RPT_DATE,date=yyyyMMdd,and }  #{ORG_ID,string,and,IN} order by DATA_ID"
+		  code="231" desc="个人担保账户标识变更请求记录">
+	<Element type="InfoBase" name="InSecAcctIDCagsInf" data="Entity"
+		table="MBT_231_RPT">
+		<Element type="Colum" name="InfRecType" field="INF_REC_TYPE" />
+		<Element type="Colum" name="OdBnesCode" field="OD_BNES_CODE" />
+		<Element type="Colum" name="NwBnesCode" field="NW_BNES_CODE" />
+	</Element>
+</Document>

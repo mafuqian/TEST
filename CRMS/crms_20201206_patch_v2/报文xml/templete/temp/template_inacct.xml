@@ -1,0 +1,139 @@
+<Document>
+	<InAcctInf>
+		<AcctBsSgmt><!--基础段 -->
+			<InfRecType>210</InfRecType><!--信息记录类型 -->
+			<AcctType>C1</AcctType><!--账户类型 -->
+			<AcctCode>10B10111110111198012011234000H0001140</AcctCode><!--个人账户标识码 -->
+			<RptDate>2016-01-01</RptDate><!--信息报告日期 -->
+			<RptDateCode>10</RptDateCode><!--报告时点说明代码 -->
+			<Name>张三</Name><!--姓名 -->
+			<IDType>10</IDType><!--证件类型 -->
+			<IDNum>110107198012011234</IDNum><!--证件号码 -->
+			<MngmtOrgCode>B10111000H0001</MngmtOrgCode><!--业务管理机构代码 -->
+		</AcctBsSgmt>
+
+		<AcctBsInfSgmt><!--基本信息段 -->
+			<BusiLines>1</BusiLines><!--借贷业务大类 -->
+			<BusiDtlLines>11</BusiDtlLines><!--借贷业务种类细分 -->
+			<OpenDate>2016-01-01</OpenDate><!--开户日期 -->
+			<Cy>CNY</Cy><!--币种 -->
+			<AcctCredLine>123456789012345</AcctCredLine><!--信用额度 -->
+			<LoanAmt>123456789012345</LoanAmt><!--借款金额 -->
+			<Flag>1</Flag><!--分次放款标志 -->
+			<DueDate>2016-01-01</DueDate><!--到期日期 -->
+			<RepayMode>11</RepayMode><!--还款方式 -->
+			<RepayFreqcy>03</RepayFreqcy><!--还款频率 -->
+			<RepayPrd>100</RepayPrd><!--还款期数 -->
+			<ApplyBusiDist>110102</ApplyBusiDist><!--业务申请地行政区划代码 -->
+			<GuarMode>1</GuarMode><!--担保方式 -->
+			<OthRepyGuarWay>0</OthRepyGuarWay><!--其他还款保证方式 -->
+			<AssetTrandFlag>0</AssetTrandFlag><!--资产转让标志 -->
+			<FundSou>2</FundSou><!--业务经营类型 -->
+			<LoanForm>1</LoanForm><!--贷款发放形式 -->
+			<CreditID>0228</CreditID><!--卡片标识号 -->
+		</AcctBsInfSgmt>
+
+		<RltRepymtInfSgmt><!--相关还款责任人信息段 -->
+			<RltRepymtNm>2</RltRepymtNm><!--责任人个数 -->
+			<RltRepymtInf><!--相关还款责任人信息 -->
+				<InfoIDType>1</InfoIDType><!--身份类别 -->
+				<ArlpName>熊光宇 1</ArlpName><!--责任人名称 -->
+				<ArlpCertType>10</ArlpCertType><!--责任人身份标识类型 -->
+				<ArlpCertNum>120101195406052217</ArlpCertNum><!--责任人身份标识号码 -->
+				<ArlpType>1</ArlpType><!--还款责任人类型 -->
+				<ArlpAmt>12222223332</ArlpAmt><!--还款责任金额 -->
+				<WartySign>1</WartySign><!--联保标志 -->
+				<MaxGuarMcc>B10111000H00013655369552</MaxGuarMcc><!--保证合同编号 -->
+			</RltRepymtInf>
+			<RltRepymtInf><!--相关还款责任人信息-->
+				<InfoIDType>2</InfoIDType><!--身份类别 -->
+				<ArlpName>广东创新技术有限公司</ArlpName><!--责任人名称 -->
+				<ArlpCertType>10</ArlpCertType><!--责任人身份标识类型 -->
+				<ArlpCertNum>3508000000123456</ArlpCertNum><!--责任人身份标识号码 -->
+				<ArlpType>2</ArlpType><!--还款责任人类型 -->
+				<ArlpAmt>12222223332</ArlpAmt><!--还款责任金额 -->
+				<WartySign>1</WartySign><!--联保标志 -->
+				<MaxGuarMcc>B10111000H00013655369553</MaxGuarMcc><!--保证合同编号 -->
+			</RltRepymtInf>
+		</RltRepymtInfSgmt>
+
+		<MotgaCltalCtrctInfSgmt><!--抵质押物信息段 -->
+			<CcNm>3</CcNm><!--抵质押合同个数 -->
+			<CccInf>
+				<Ccc>B10111000H0001A00000000000011</Ccc><!--抵(质)押合同标识码 -->
+			</CccInf>
+			<CccInf>
+				<Ccc>B10111000H0001A00000000000012</Ccc><!--抵(质)押合同标识码 -->
+			</CccInf>
+			<CccInf>
+				<Ccc>B10111000H0001A00000000000013</Ccc><!--抵(质)押合同标识码 -->
+			</CccInf>
+		</MotgaCltalCtrctInfSgmt>
+
+		<AcctCredSgmt><!--授信额度信息段 -->
+			<Mcc>B10111000H0001B00000000000013</Mcc><!--授信协议标识码 -->
+		</AcctCredSgmt>
+
+		<OrigCreditorInfSgmt><!--初始债权说明段 -->
+			<InitCredName>广东创新技术有限公司</InitCredName><!--初始债权人名称 -->
+			<InitCredOrgNm>91430111MW4L36JQ9B</InitCredOrgNm><!--初始债权人机构代码 -->
+			<OrigDbtCate>1</OrigDbtCate><!--原债务种类 -->
+			<InitRpySts>0</InitRpySts><!--债权转移时的还款状态 -->
+		</OrigCreditorInfSgmt>
+
+		<AcctMthlyBlgInfSgmt><!--月度表现信息段 -->
+			<Month>2016-01</Month><!--月份 -->
+			<SettDate></SettDate><!--结算/应还款日期 -->
+			<AcctStatus>1</AcctStatus><!--账户状态 -->
+			<AcctBal>1123456789</AcctBal><!--余额 -->
+			<NotIsuBal>1123456789</NotIsuBal><!--未出单的大额专项分期余额 <RemRepPrd>11</RemRepPrd>--><!--剩余还款期数 -->
+			<FiveCate>4</FiveCate><!--五级分类 -->
+			<FiveCateAdjDate>2016-01-01</FiveCateAdjDate><!--五级分类认定日期 -->
+			<RpyStatus>1</RpyStatus><!--当前还款状态 -->
+			<RpyPrct>20</RpyPrct><!--实际还款百分比 -->
+			<OverdPrd>1</OverdPrd><!--当前逾期期数 -->
+			<TotOverd>1123456789</TotOverd><!--当前逾期总额 -->
+			<OverdPrinc>1123456789</OverdPrinc><!--当前逾期本金 -->
+			<Oved31_60Princ>0</Oved31_60Princ><!--逾期 31-60 天未归还本金 -->
+			<Oved61_90Princ>0</Oved61_90Princ><!--逾期 61-90 天未归还本金 -->
+			<Oved91_180Princ>0</Oved91_180Princ><!--逾期 91-180 天未归还本金 -->
+			<OvedPrinc180>0</OvedPrinc180><!--逾期 180 天以上未归还本金 -->
+			<OvedrawBaOve180>0</OvedrawBaOve180><!--透支 180 天以上未还余额 -->
+			<CurRpyAmt>1123456789</CurRpyAmt><!--本月应还款金额 -->
+			<ActRpyAmt>1123456789</ActRpyAmt><!--本月实际还款金额 -->
+			<LatRpyDate>2016-01-01</LatRpyDate><!--最近一次实际还款日期 -->
+			<CloseDate></CloseDate><!--账户关闭日期 -->
+		</AcctMthlyBlgInfSgmt>
+
+		<SpecPrdSgmt><!--大额专项分期信息段 -->
+			<SpecLine>1123456789</SpecLine><!--大额专项分期额度 -->
+			<SpecEfctDate>2016-01-01</SpecEfctDate><!--专项分期生效日期 -->
+			<SpecEndDate>2016-02-01</SpecEndDate><!--专项分期到期日期 -->
+			<UsedInstAmt>123</UsedInstAmt><!--已用分期金额 -->
+		</SpecPrdSgmt>
+
+		<AcctDbtInfSgmt><!--非月度表现 -->
+			<AcctStatus>1</AcctStatus><!--账户状态 -->
+			<AcctBal>1123456789</AcctBal><!--余额 -->
+			<FiveCate>1</FiveCate><!--五级分类 -->
+			<FiveCateAdjDate>2016-01-01</FiveCateAdjDate><!--五级分类认定日期 -->
+			<RemRepPrd>30</RemRepPrd><!--剩余还款期数 -->
+			<RpyStatus>N</RpyStatus><!--当前还款状态 -->
+			<OverdPrd>0</OverdPrd><!--当前逾期期数 -->
+			<TotOverd>0</TotOverd><!--当前逾期总额 -->
+			<LatRpyAmt>1123456789</LatRpyAmt><!--最近一次实际还款金额 -->
+			<LatRpyDate>2016-01-01</LatRpyDate><!--最近一次实际还款日期 -->
+			<CloseDate></CloseDate><!--账 户关闭日期 -->
+		</AcctDbtInfSgmt>
+		<AcctSpecTrstDspnSgmt><!--特殊交易说明信息段 -->
+			<CagOfTrdNm>1</CagOfTrdNm><!--交易个数 -->
+			<CagOfTrdInf><!--交易信息 -->
+				<ChanTranType>1</ChanTranType><!--交易类型 -->
+				<TranDate>2016-01-01</TranDate><!--交易日期 -->
+				<TranAmt>1123456789</TranAmt><!--交易金额 -->
+				<DueTranMon>10</DueTranMon><!--到期日期变更月数 -->
+				<DetInfo></DetInfo><!--交易明细信息 -->
+			</CagOfTrdInf>
+		</AcctSpecTrstDspnSgmt>
+	</InAcctInf>
+</Document>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<Document type="Info" name="InIDEfctInf"
+	table="MBT_130_RPT" sql="select * from MBT_130_RPT where 1=1 and  DATA_STATUS='24' #{RPT_DATE,date=yyyyMMdd,and }  #{ORG_ID,string,and,IN}  order by DATA_ID" code="130" desc="个人证件有效期信息记录">
+	<Element type="InfoBase" name="InIDEfctInf" data="Entity"
+		table="MBT_130_RPT">
+		<Element type="Colum" name="InfRecType" field="INF_REC_TYPE" />
+		<Element type="Colum" name="Name" field="NAME" />
+		<Element type="Colum" name="IDType" field="ID_TYPE" />
+		<Element type="Colum" name="IDNum" field="ID_NUM" />
+		<Element type="Colum" name="InfSurcCode" field="INF_SURC_CODE" />
+		<Element type="Colum" name="IDEfctDate" format="date={yyyy-MM-dd}" field="ID_EFCT_DATE" default=""/>
+		<Element type="Colum" name="IDDueDate" format="date={yyyy-MM-dd}" field="ID_DUE_DATE" default=""/>
+		<Element type="Colum" name="IDOrgName" field="ID_ORG_NAME" default=""/>
+		<Element type="Colum" name="IDDist" field="ID_DIST" default=""/>
+		<Element type="Colum" name="Cimoc" field="CIMOC" default=""/>
+		<Element type="Colum" name="RptDate" format="date={yyyy-MM-dd}" field="RPT_DATE" default=""/>
+	</Element>
+</Document>

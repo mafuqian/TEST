@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<Document type="Info" name="EnCtfItgInf"
+	table="MBT_340_RPT" sql="select * from MBT_340_RPT where 1=1 and  DATA_STATUS='24' #{RPT_DATE,date=yyyyMMdd,and }  #{ORG_ID,string,and,IN} order by DATA_ID" code="340" desc="企业身份标识整合信息记录">
+	<Element type="InfoBase" name="EnCtfItgInf" data="Entity"
+		table="MBT_340_RPT">
+		<Element type="Colum" name="InfRecType" field="B_INF_REC_TYPE" />
+		<Element type="Colum" name="EntName" field="B_ENT_NAME" />
+		<Element type="Colum" name="EntCertType" field="B_ENT_CERT_TYPE" />
+		<Element type="Colum" name="EntCertNum" field="B_ENT_CERT_NUM" />
+		<Element type="Colum" name="OthEntCertType" field="B_OTH_ENT_CERT_TYPE" />
+		<Element type="Colum" name="OthEntCertNum" field="B_OTH_ENT_CERT_NUM" />
+		<Element type="Colum" name="CertAssFlg" field="B_CERT_ASS_FLG" />
+		<Element type="Colum" name="RptDate" format="date={yyyy-MM-dd}" field="B_RPT_DATE" />
+	</Element>
+</Document>

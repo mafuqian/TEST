@@ -1,0 +1,142 @@
+<?xml version="1.0"?>
+<!--
+参数说明
+#{RPT_DATE,date=yyyyMMdd,and}
+#为可选参数，{}内为参数内容，
+第一个参数RPT_DATE 为 定义字段名,
+第二个参数 data=yyMMdd 定义为格式,如条件为between则需传两个参数
+第三个参数为条件类型有and/or/between
+
+${DATA_ID}
+$为必填参数，{}内为外层参数的字段名
+-->
+<Document type="Info" name="EnBasInf" code="310" desc="企业基本信息"
+	table="MBT_310_RPT" sql="select * from MBT_310_RPT where 1=1 and  DATA_STATUS='24' #{RPT_DATE,date=yyyyMMdd,and }  #{ORG_ID,string,and,IN} order by DATA_ID"  >
+	<Element type="InfoBase" name="BsSgmt" data="Entity"
+		table="MBT_310_RPT" >
+		<Element type="Colum" name="InfRecType" field="B_INF_REC_TYPE" />
+		<Element type="Colum" name="EntName" field="B_ENT_NAME" />
+		<Element type="Colum" name="EntCertType" field="B_ENT_CERT" />
+		<Element type="Colum" name="EntCertNum" field="B_ENT_CERT_NUM" />
+		<Element type="Colum" name="InfSurcCode" field="B_INF_SURC_CODE" />
+		<Element type="Colum" name="RptDate" format="date={yyyy-MM-dd}" field="B_RPT_DATE" />
+		<Element type="Colum" name="RptDateCode" field="B_RPT_DATE_CODE" />
+		<Element type="Colum" name="Cimoc" field="B_CIMOC" default="abcc"/>
+		<Element type="Colum" name="CustomerType" field="B_CUSTOMER_TYPE" />
+		<Element type="Colum" name="EtpSts" field="B_ETP_STS" />
+		<Element type="Colum" name="OrgType" field="B_ORG_TYPE" />
+	</Element>
+
+	<Element type="InfoBase" name="IDSgmt" data="Collection"
+		size="IDNm" updatetime="IDInfoUpDate=${C_ID_INFO_UP_DATE}"  format="date={yyyy-MM-dd}" entity="IDRec"
+		table="MBT_310_C_RPT"
+		sql="select ${colums} from  MBT_310_C_RPT where MBT_310_C_RPT.PDATA_ID=${DATA_ID}">
+		<Element type="Colum" name="OthEntCertType"
+			field="OTH_ENT_CERT_TYPE" />
+		<Element type="Colum" name="OthEntCertNum"
+			field="OTH_ENT_CERT_NUM" />
+	</Element>
+
+	<Element type="InfoBase" name="FcsInfSgmt" data="Entity"
+		table="MBT_310_RPT" >
+		<Element type="Colum" name="Nationality" field="D_NATIONALITY" />
+		<Element type="Colum" name="RegAdd" field="D_REG_ADD"  default=""/>
+		<Element type="Colum" name="AdmDivOfReg"
+			field="D_ADM_DIV_OF_REG" default="" />
+		<Element type="Colum" name="EstablishDate" format="date={yyyy-MM-dd}" 
+			field="D_ESTABLISH_DATE" default="" />
+		<Element type="Colum" name="BizEndDate" format="date={yyyy-MM-dd}" field="D_BIZ_END_DATE" />
+		<Element type="Colum" name="BizRange" field="D_BIZ_RANGE" default="" />
+		<Element type="Colum" name="EcoIndusCate"
+			field="D_ECO_INDUS_CATE" />
+		<Element type="Colum" name="EcoType" field="D_ECO_TYPE" />
+		<Element type="Colum" name="EntScale" field="D_ENT_SCALE" />
+		<Element type="Colum" name="FcsInfoUpDate" format="date={yyyy-MM-dd}" 
+			field="D_FCS_INFO_UP_DATE" />
+	</Element>
+
+	<Element type="InfoBase" name="MnMmbInfSgmt" data="Collection"
+		size="MmbNm" updatetime="MnMmbInfoUpDate=${E_MN_MMB_INFO_UP_DATE}" format="date={yyyy-MM-dd}" entity="MmbInf"
+		table="MBT_310_E_RPT"
+		sql="select ${colums} from MBT_310_E_RPT where MBT_310_E_RPT.PDATA_ID=${DATA_ID}">
+		<Element type="Colum" name="MmbAlias" field="MMB_ALIAS" />
+		<Element type="Colum" name="MmbIDType" field="MMB_ID_TYPE" />
+		<Element type="Colum" name="MmbIDNum" field="MMB_ID_NUM" />
+		<Element type="Colum" name="MmbPstn" field="MMB_PSTN" />
+	</Element>
+
+	<Element type="InfoBase" name="MnShaHodInfSgmt" data="Mix"
+		updatetime="MnShaHodInfoUpDate=${F_MN_SHA_HOD_INFO_DATE}" format="date={yyyy-MM-dd}" >
+		<Element type="InfoBaseData" data="Entity" table="MBT_310_RPT">
+			<Element type="Colum" name="RegCapCurrency" field="F_REG_CAP_CURRENCY" />
+			<Element type="Colum" name="RegCap" field="F_REG_CAP" />
+		</Element>
+		<Element type="InfoBaseData" data="Collection"
+			size="MnSharHodNm" entity="SharHodInf"
+			table="MBT_310_F_RPT"
+			sql="select ${colums} from MBT_310_F_RPT where MBT_310_F_RPT.PDATA_ID=${DATA_ID}">
+			<Element type="Colum" name="SharHodType"
+				field="SHAR_HOD_TYPE" />
+			<Element type="Colum" name="SharHodCertType"
+				field="SHAR_HOD_CERT_TYPE" />
+			<Element type="Colum" name="SharHodName"
+				field="SHAR_HOD_NAME" />
+			<Element type="Colum" name="SharHodIDType"
+				field="SHAR_HOD_ID_TYPE" />
+			<Element type="Colum" name="SharHodIDNum"
+				field="SHAR_HOD_ID_NUM" />
+			<Element type="Colum" name="InvRatio" format="amount={#.00}" field="INV_RATIO" />
+		</Element>
+	</Element>
+
+	<Element type="InfoBase" name="ActuCotrlInfSgmt" data="Collection"
+			 size="ActuCotrlNm" updatetime="ActuCotrlInfoUpDate=${G_ACTU_COTRL_INFO_UP_DATE}" format="date={yyyy-MM-dd}" entity="ActuCotrlInf"
+			 table="MBT_310_G_RPT"
+			 sql="select ${colums} from  MBT_310_G_RPT where MBT_310_G_RPT.PDATA_ID=${DATA_ID}">
+		<Element type="Colum" name="ActuCotrlCertType"
+				 field="ACTU_COTRL_CERT_TYPE" />
+		<Element type="Colum" name="ActuCotrlName"
+				 field="ACTU_COTRL_NAME" />
+		<Element type="Colum" name="ActuCotrlIDType"
+				 field="ACTU_COTRL_ID_TYPE" />
+		<Element type="Colum" name="ActuCotrlIDNum"
+				 field="ACTU_COTRL_ID_NUM" />
+	</Element>
+
+	<Element type="InfoBase" name="SpvsgAthrtyInfSgmt" data="Entity"
+			 table="MBT_310_RPT">
+		<Element type="Colum" name="SupOrgType" field="H_SUP_ORG_TYPE" />
+		<Element type="Colum" name="SupOrgName" field="H_SUP_ORG_NAME" />
+		<Element type="Colum" name="SupOrgCertType"
+				 field="H_SUP_ORG_CERT_TYPE" />
+		<Element type="Colum" name="SupOrgCertNum"
+				 field="H_SUP_ORG_CERT_NUM" />
+		<Element type="Colum" name="SupOrgInfoUpDate" format="date={yyyy-MM-dd}" field="H_SUP_ORG_INFO_UP_DATE" />
+	</Element>
+
+	<Element type="InfoBase" name="CotaInfSgmt" data="Entity"
+			 table="MBT_310_RPT" >
+		<Element type="Colum" name="ConAddDistrictCode" field="I_CON_ADD_DISTRICT_CODE" default=""/>
+		<Element type="Colum" name="ConAdd" field="I_CON_ADD" default=""/>
+		<Element type="Colum" name="ConPhone"
+				 field="I_CON_PHONE" default=""/>
+		<Element type="Colum" name="FinConPhone"
+				 field="I_FIN_CON_PHONE" default=""/>
+		<Element type="Colum" name="CotaInfoUpDate" format="date={yyyy-MM-dd}" field="I_COTA_INFO_UP_DATE" />
+	</Element>
+
+	<!-- <Element type="MixInfo" entity="SharHodInf" data="Collection" size="MmbNm" 
+		table="MBT_EN_BAS_MN_SHA_SGMT" rel="MBT_EN_BAS_MN_SHA_SGMT.PDATA_ID=MBT_EN_BAS_INF_RPT.DATA_ID" 
+		limit="MBT_EN_BAS_MN_SHA_SGMT.PDATA_ID=#{MBT_EN_BAS_INF_RPT.DATA_ID}"> <Element 
+		type="Colum" name="MmbAlias" field="MMB_ALIAS"/> <Element type="Colum" name="MmbIDType" 
+		field="MMB_ID_TYPE" /> <Element type="Colum" name="MmbIDNum" field="MMB_ID_NUM" 
+		/> <Element type="Colum" name="MmbPstn" field="MMB_PSTN" /> </Element> <Element 
+		type="Colum" name="MmbAlias" field="MMB_ALIAS"/> <Element type="Colum" name="MmbIDType" 
+		field="MMB_ID_TYPE" /> <Element type="Colum" name="MmbIDNum" field="MMB_ID_NUM" 
+		/> <Element type="Colum" name="MmbPstn" field="MMB_PSTN" /> </Element> -->
+	<!-- -->
+
+	<!--<MnShaHodInfSgmt></MnShaHodInfSgmt> <ActuCotrlInfSgmt>实际控制人段</ActuCotrlInfSgmt> 
+		<SpvsgAthrtyInfSgmt>上级机构段</SpvsgAthrtyInfSgmt> <CotaInfSgmt>联系方式段</CotaInfSgmt> -->
+
+</Document>

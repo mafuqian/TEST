@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<Document type="Info" name="InIDEfctInfDlt"
+	table="MBT_130_EX_RPT" sql="select * from MBT_130_EX_RPT  where 1=1 and  DATA_STATUS='24' #{RPT_DATE,date=yyyyMMdd,and }  #{ORG_ID,string,and,IN}  order by DATA_ID" code="134" desc="个人证件有效期信息整笔删除请求记录">
+	<Element type="InfoBase" name="InIDEfctInfDlt" data="Entity"
+		table="MBT_130_EX_RPT">
+		<Element type="Colum" name="InfRecType" field="INF_REC_TYPE" default=""/>
+		<Element type="Colum" name="Name" field="NAME" default=""/>
+		<Element type="Colum" name="IDType" field="ID_TYPE" default=""/>
+		<Element type="Colum" name="IDNum" field="ID_NUM" default=""/>
+		<Element type="Colum" name="InfSurcCode" field="INF_SURC_CODE" default=""/>
+	</Element>
+</Document>

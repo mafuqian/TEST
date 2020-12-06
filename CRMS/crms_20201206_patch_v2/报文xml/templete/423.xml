@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<Document type="Info" name="EnCtrctInfDel"
+	table="MBT_420_EX_RPT" sql="select * from MBT_420_EX_RPT where 1=1 and  DATA_STATUS='24'  and OPT_TYPE='02' #{RPT_DATE,date=yyyyMMdd,and }  #{ORG_ID,string,and,IN} order by DATA_ID" code="423" desc="企业授信协议按段删除请求记录">
+	<Element type="InfoBase" name="EnCtrctInfDel" data="Entity"
+		table="MBT_420_EX_RPT">
+		<Element type="Colum" name="InfRecType" field="B_INF_REC_TYPE" />
+		<Element type="Colum" name="DelRecCode" field="B_CONTRACT_CODE" />
+		<Element type="Colum" name="DelSgmtCode" field="PART_TYPE" />
+		<Element type="Colum" name="DelStartDate" format="date={yyyy-MM-dd}" field="START_DATE" default=""/>
+		<Element type="Colum" name="DelEndDate" format="date={yyyy-MM-dd}" field="END_DATE" default=""/>
+	</Element>
+</Document>

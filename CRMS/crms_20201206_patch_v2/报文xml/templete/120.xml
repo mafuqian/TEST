@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<Document type="Info" name="InFalMmbsInf"
+	table="MBT_120_RPT" sql="select * from MBT_120_RPT where 1=1 and  DATA_STATUS='24' #{RPT_DATE,date=yyyyMMdd,and }  #{ORG_ID,string,and,IN}  order by DATA_ID" code="120" desc="家族关系信息记录">
+	<Element type="InfoBase" name="InFalMmbsInf" data="Entity"
+		table="MBT_120_RPT">
+		<Element type="Colum" name="InfRecType" field="INF_REC_TYPE" />
+		<Element type="Colum" name="Name" field="NAME" />
+		<Element type="Colum" name="IDType" field="ID_TYPE" />
+		<Element type="Colum" name="IDNum" field="ID_NUM" />
+		<Element type="Colum" name="FamMemName" field="FAM_MEM_NAME" />
+		<Element type="Colum" name="FamMemCertType" field="FAM_MEM_CET_TYPE" />
+		<Element type="Colum" name="FamMemCertNum" field="FAM_MEM_CERT_NUM" />
+		<Element type="Colum" name="FamRel" field="FAM_REL" />
+		<Element type="Colum" name="FamRelaAssFlag" field="FAM_RELA_ASS_FLAG" />
+		<Element type="Colum" name="InfSurcCode" field="INF_SURC_CODE" />
+		<Element type="Colum" name="RptDate" format="date={yyyy-MM-dd}" field="RPT_DATE" />
+	</Element>
+</Document>

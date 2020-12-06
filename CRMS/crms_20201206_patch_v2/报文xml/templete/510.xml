@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<Document type="Info" name="MotgaCltalCtrctInf"
+		  table="MBT_510_RPT" sql="select * from MBT_510_RPT where 1=1 and DATA_STATUS='24' #{RPT_DATE,date=yyyyMMdd,and }  #{ORG_ID,string,and,IN} order by DATA_ID" code="510" desc="抵（质）押合同信息记录">
+	<Element type="InfoBase" name="MotgaCltalCtrctBsSgmt" data="Entity"
+			 table="MBT_510_RPT" >
+		<Element type="Colum" name="InfRecType" field="B_INF_REC_TYPE" />
+		<Element type="Colum" name="CcCode" field="B_CC_CODE" />
+		<Element type="Colum" name="RptDate" format="date={yyyy-MM-dd}" field="B_RPT_DATE" />
+		<Element type="Colum" name="RptDateCode" field="B_RPT_DATE_CODE" />
+		<Element type="Colum" name="InfoIDType" field="B_INFO_ID_TYPE" />
+		<Element type="Colum" name="Name" field="B_NAME" />
+		<Element type="Colum" name="CertType" field="B_CERT_TYPE" />
+		<Element type="Colum" name="CertNum" field="B_CERT_NUM" />
+		<Element type="Colum" name="MngmtOrgCode" field="B_MNGMT_ORG_CODE" />
+	</Element>
+
+	<Element type="InfoBase" name="MotgaCltalBsInfSgmt" data="Entity"
+			 table="MBT_510_RPT" >
+		<Element type="Colum" name="GuarType" field="C_GUAR_TYPE" />
+		<Element type="Colum" name="CcAmt" field="C_CC_AMT" />
+		<Element type="Colum" name="Cy" field="C_CY" />
+		<Element type="Colum" name="CcValDate" format="date={yyyy-MM-dd}"  field="C_CC_VAL_DATE" />
+		<Element type="Colum" name="CcExpDate" format="date={yyyy-MM-dd}" field="C_CC_EXP_DATE" />
+		<Element type="Colum" name="MaxGuar" field="C_MAX_GUAR" />
+		<Element type="Colum" name="CcStatus" field="C_CC_STATUS" />
+	</Element>
+
+
+	<Element type="InfoBase" name="ComRecInfSgmt" data="Collection"
+			 size="GrtdNm" entity="OtrRec"
+			 table="MBT_510_D_RPT"
+			 sql="select ${colums} from  MBT_510_D_RPT where MBT_510_D_RPT.PDATA_ID=${DATA_ID}" >
+		<Element type="Colum" name="InfoIDType" field="D_INFO_ID_TYPE" />
+		<Element type="Colum" name="GuarName" field="D_GUAR_NAME" />
+		<Element type="Colum" name="GuarCertType" field="D_GUAR_CERT_TYPE" />
+		<Element type="Colum" name="GuarCertNum" field="D_GUAR_CERT_NUM" />
+	</Element>
+
+	<Element type="InfoBase" name="MotgaProptInfSgmt" data="Collection"
+			 size="PleNm" entity="PleInf"
+			 table="MBT_510_E_RPT"
+			 sql="select ${colums} from  MBT_510_E_RPT where MBT_510_E_RPT.PDATA_ID=${DATA_ID}" >
+		<Element type="Colum" name="PleType" field="E_PLE_TYPE" />
+		<Element type="Colum" name="MotgaProptIDType" field="E_MOTGA_PROPT_ID_TYPE"  default=""/>
+		<Element type="Colum" name="PleCertID" field="E_PLE_CERT_ID" default=""/>
+		<Element type="Colum" name="PleDistr" field="E_PLE_DISTR" default=""/>
+		<Element type="Colum" name="PleValue" field="E_PLE_VALUE" default=""/>
+		<Element type="Colum" name="PleCy" field="E_PLE_CY" default=""/>
+		<Element type="Colum" name="ValOrgType" field="E_VAL_ORG_TYPE" default=""/>
+		<Element type="Colum" name="ValDate" format="date={yyyy-MM-dd}" field="E_VAL_DATE" default="" />
+		<Element type="Colum" name="PledgorType" field="E_PLEDGOR_TYPE" />
+		<Element type="Colum" name="PledgorName" field="E_PLEDGOR_NAME" />
+		<Element type="Colum" name="PleorCertType" field="E_PLEOR_CERT_TYPE" />
+		<Element type="Colum" name="PleorCertNum" field="E_PLEOR_CERT_NUM" />
+		<Element type="Colum" name="PleDesc" field="E_PLE_DESC" default="" />
+	</Element>
+
+	<Element type="InfoBase" name="CltalInfSgmt" data="Collection"
+			 size="ImpNm" entity="ImpInf"
+			 table="MBT_510_F_RPT"
+			 sql="select ${colums} from  MBT_510_F_RPT where MBT_510_F_RPT.PDATA_ID=${DATA_ID}" >
+		<Element type="Colum" name="ImpType" field="F_IMP_TYPE" />
+		<Element type="Colum" name="ImpVal" field="F_IMP_VAL" />
+		<Element type="Colum" name="ImpCy" field="F_IMP_CY" />
+		<Element type="Colum" name="Ippc" field="F_IPPC" />
+		<Element type="Colum" name="PawnName" field="F_PAWN_NAME" />
+		<Element type="Colum" name="PawnCertType" field="F_PAWN_CERT_TYPE" />
+		<Element type="Colum" name="PawnCertNum" field="F_PAWN_CERT_NUM" />
+	</Element>
+
+</Document>

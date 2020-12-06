@@ -1,0 +1,7 @@
+<Document>
+	<InCtrctInf>
+		<CtrctBsSgmt>基础段</CtrctBsSgmt>
+		<CtrctCertRelSgmt>共同受信人信息段</CtrctCertRelSgmt>
+		<CreditLimSgmt>额度信息段</CreditLimSgmt>
+	</InCtrctInf>
+</Document>

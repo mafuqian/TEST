@@ -1,0 +1,16 @@
+12345678901234567890123456789012345678901234567890
+<Document>
+	<FbInf>
+		<ErrRecId>20</ErrRecId><!--出错记录标识 -->
+		<FbErrNum>2</FbErrNum><!--反馈信息数 -->
+		<ErrInf>
+			<FbCode>BBR001</FbCode><!--反馈信息代码 1 -->
+			<FbMsg>0000</FbMsg><!--反馈信息 1 -->
+		</ErrInf>
+		<ErrInf>
+			<FbCode>ABE004</FbCode><!--反馈信息代码 2 -->
+			<FbMsg> IDNum</FbMsg><!--反馈信息 2 -->
+		</ErrInf>
+		<ErrRec>原上报信息记录 BASE64 转码后的字符内容</ErrRec><!--原出错记录 -->
+	</FbInf>
+</Document>
