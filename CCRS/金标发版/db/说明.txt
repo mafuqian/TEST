@@ -1,0 +1,16 @@
+SQL没有先后执行顺序，直接执行即可。
+
+1.任务配置表：CCRS_BM_RPT_CFG，CCRS_BM_RPT_CFG_DTL
+
+2.菜单配置表：GP_BM_FUNCTION 
+
+3.数据导入/导出配置表：GP_BM_TEMPLATE_EXPORT，GP_BM_ID_FIELDDATA，GP_BM_ID_FIELDATA
+
+4.数据字典表：GP_BM_DATA_DIC
+
+5.校验规则配置表：GP_QC_RULE，GP_QC_RULE_MAP，GP_QC_RULE_SET
+
+6.金标五表建表语句
+
+
+金标五张表合并在货币信贷（32张表内），现合计37张报表。 任务模式与货币信贷一致
