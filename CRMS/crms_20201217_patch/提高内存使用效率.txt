@@ -1,0 +1,1 @@
+update Gp_Bm_Business_Param set param_value='2' where param_id = 'XLSX_EXPORT_THREADSIZE';
