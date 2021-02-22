@@ -198,7 +198,7 @@ INSERT INTO `gp_bm_template_export` (`DATA_ID`, `FUNCID`, `FUNC_NAME`, `TABLE_NA
 VALUES('d90ba60871c111ebb073005056ba5dec','gfdr_00011001','存量委托贷款信息补录','GFDR_PM_CLWTDK','存量委托贷款信息','RSV1','借款CustomerID','Y','35','35','Y','486602534d6045ef93ed84fb489d4589','N','auto_generator','gfdr',NULL,NULL,NULL,NULL);
 
 INSERT INTO `gp_bm_template_export` (`DATA_ID`, `FUNCID`, `FUNC_NAME`, `TABLE_NAME`, `TABLE_COMMENTS`, `COLUMN_NAME`, `COLUMN_COMMENTS`, `IS_NEED`, `SEQ_NO`, `NUM`, `IS_RELATION`, `GUID`, `HAS_SQL`, `RSV1`, `RSV2`, `RSV3`, `RSV4`, `RSV5`, `TSK_MESSAGE`) 
-VALUES('f296a89d71c111ebb073005056ba5dec','gfdr_00011001','存量委托贷款信息补录','GFDR_PM_CLWTDK','存量委托贷款信息','RSV1','委托CustomerID','Y','36','36','Y','486602534d6045ef93ed84fb489d4589','N','auto_generator','gfdr',NULL,NULL,NULL,NULL);
+VALUES('f296a89d71c111ebb073005056ba5dec','gfdr_00011001','存量委托贷款信息补录','GFDR_PM_CLWTDK','存量委托贷款信息','RSV2','委托CustomerID','Y','36','36','Y','486602534d6045ef93ed84fb489d4589','N','auto_generator','gfdr',NULL,NULL,NULL,NULL);
 
 
 INSERT INTO `gp_bm_template_export` (`DATA_ID`, `FUNCID`, `FUNC_NAME`, `TABLE_NAME`, `TABLE_COMMENTS`, `COLUMN_NAME`, `COLUMN_COMMENTS`, `IS_NEED`, `SEQ_NO`, `NUM`, `IS_RELATION`, `GUID`, `HAS_SQL`, `RSV1`, `RSV2`, `RSV3`, `RSV4`, `RSV5`, `TSK_MESSAGE`) 
