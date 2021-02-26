@@ -1,0 +1,11 @@
+truncate table PM_RTMS_ALERT_MSG;
+truncate table PM_RTMS_TASK;
+truncate table pm_rms_task;
+truncate table pm_rms_sub_task;
+truncate table pm_rms_task_file;
+truncate table pm_rms_task_log;
+
+truncate table GP_BM_FILE_EXPORT_TSK_INF;
+truncate table gp_bm_gno_q;
+truncate table gp_bm_login_log;
+truncate table GP_BM_BIZ_LOG;
