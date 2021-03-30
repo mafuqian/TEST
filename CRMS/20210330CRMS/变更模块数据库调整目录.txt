@@ -1,0 +1,14 @@
+建表：
+1、xxx.sql以报表编号命名的.sql文件是新式报表的建表语句
+2、FB_TO_DATA.sql
+3、MBT_BATCH_RPT.sql
+4、MBT_BM_RPT_CFG.sql
+5、反馈结果表表结构调整MBT_FB_RESULT_INF.sql
+
+插入配置数据：
+1、GP_BM_EXCHANGE_RATE_AMT-20210317insert.sql
+2、GP_BM_FUNCTION-20210329insert.sql
+3、MBT_BM_RPT_CFG-20210330insert.sql
+
+创建拉数存储过程（rpt->pm）
+1、变更模块-从rpt中同步数据到pm的存储过程.zip
